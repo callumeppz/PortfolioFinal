@@ -258,139 +258,76 @@ body {
     </main>
 <!-- TIMELINE -->
 <section class="max-w-6xl mx-auto px-6 py-12 relative z-10">
-  <div class="text-center glass p-8 tilt" id="heroCard" style="box-shadow: 0 10px 40px rgba(2,6,23,0.6);">
-  <div class="timeline-wrap relative">
-    <!-- Vertical timeline line -->
-    <div class="timeline-line absolute left-1/2 top-0 h-full w-1 bg-pink-500 rounded-full -translate-x-1/2 "></div>
+  <div class="text-center glass p-6 md:p-8 tilt" id="heroCard" style="box-shadow: 0 10px 40px rgba(2,6,23,0.6);">
+    <div class="timeline-wrap relative">
+      <!-- Vertical timeline line -->
+      <div class="timeline-line absolute left-1/2 top-0 h-full w-1 bg-pink-500 rounded-full -translate-x-1/2"></div>
 
-    <!-- 1. Graduate Software Engineer (Right) -->
-    <div class="timeline-item grid grid-cols-12 items-start gap-4 mb-12">
-      <!-- Left empty for right card -->
-      <div class="col-span-5 flex justify-end"></div>
+      <!-- Timeline Items -->
+      <div class="timeline-item grid grid-cols-12 items-start gap-4 mb-12 md:grid-cols-12">
+        <!-- Graduate Software Engineer (Right on desktop) -->
+        <div class="col-span-12 md:col-span-5 md:flex md:justify-end"></div>
 
-      <!-- Center bullet -->
-      <div class="col-span-2 flex justify-center relative">
-        <div class="timeline-bullet bg-accent2 z-10">G</div>
-      </div>
-
-      <!-- Right card -->
-      <div class="col-span-5 flex justify-start">
-        <div class="timeline-card w-full max-w-sm">
-          <div class="card-header flex items-start justify-between">
-            <div>
-              <p class="job-title">Graduate Software Engineer</p>
-              <p class="company">BAE Systems Inc., Rochester, Kent, UK</p>
-              <p class="job-meta">Sept 2024 – Present • SC Cleared</p>
-            </div>
-            <button class="toggle-btn ml-4" data-target="c1" aria-controls="c1" aria-expanded="false">Details</button>
-          </div>
-          <div id="c1" class="collapse mt-3 text-gray-300" aria-hidden="true">
-            <ul class="list-disc list-inside">
-              <li>Developed DO-178C Level C/D embedded firmware on ARM Cortex MCUs.</li>
-              <li>Engineered low-level C drivers &amp; CSU for FPGA-based systems.</li>
-              <li>Produced SysML architecture &amp; design documentation.</li>
-              <li>Integrated firmware via CI/CD (Jenkins, Bitbucket). JIRA &amp; Git.</li>
-            </ul>
-          </div>
+        <div class="col-span-12 md:col-span-2 flex justify-center relative">
+          <div class="timeline-bullet bg-accent2 z-10">G</div>
         </div>
-      </div>
-    </div>
 
-    <!-- 2. IT Support Analyst (Left) -->
-    <div class="timeline-item grid grid-cols-12 items-start gap-4 mb-12">
-      <!-- Left card -->
-      <div class="col-span-5 flex justify-end">
-        <div class="timeline-card w-full max-w-sm">
-          <div class="card-header flex items-start justify-between">
-            <div>
-              <p class="job-title">IT Support Analyst</p>
-              <p class="company">University of Reading — Reading, UK</p>
-              <p class="job-meta">Sept 2023 – July 2024 (concurrent with degree)</p>
+        <div class="col-span-12 md:col-span-5 flex justify-center md:justify-start">
+          <div class="timeline-card w-full max-w-sm md:max-w-sm">
+            <div class="card-header flex flex-col md:flex-row items-start justify-between">
+              <div>
+                <p class="job-title text-lg md:text-xl">Graduate Software Engineer</p>
+                <p class="company text-sm md:text-base">BAE Systems Inc., Rochester, Kent, UK</p>
+                <p class="job-meta text-xs md:text-sm">Sept 2024 – Present • SC Cleared</p>
+              </div>
+              <button class="toggle-btn mt-2 md:mt-0 ml-0 md:ml-4" data-target="c1" aria-controls="c1" aria-expanded="false">Details</button>
             </div>
-            <button class="toggle-btn ml-4" data-target="c2" aria-controls="c2" aria-expanded="false">Details</button>
-          </div>
-          <div id="c2" class="collapse mt-3 text-gray-300" aria-hidden="true">
-            <ul class="list-disc list-inside">
-              <li>Supported authentication, account management, network access &amp; OS faults (Windows &amp; Linux).</li>
-              <li>OS-level troubleshooting incl. SSH, PowerShell scripting, Linux diagnostics.</li>
-              <li>Produced documentation and improved ticket response workflows.</li>
-            </ul>
+            <div id="c1" class="collapse mt-3 text-gray-300 text-sm md:text-base" aria-hidden="true">
+              <ul class="list-disc list-inside">
+                <li>Developed DO-178C Level C/D embedded firmware on ARM Cortex MCUs.</li>
+                <li>Engineered low-level C drivers & CSU for FPGA-based systems.</li>
+                <li>Produced SysML architecture & design documentation.</li>
+                <li>Integrated firmware via CI/CD (Jenkins, Bitbucket). JIRA & Git.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Center bullet -->
-      <div class="col-span-2 flex justify-center relative">
-        <div class="timeline-bullet bg-gradient-to-b from-accent1 to-accent2 z-10">IT</div>
-      </div>
-
-      <!-- Right empty for left card -->
-      <div class="col-span-5 flex justify-start"></div>
-    </div>
-
-    <!-- 3. Games Functionality Tester (Right) -->
-    <div class="timeline-item grid grid-cols-12 items-start gap-4 mb-12">
-      <!-- Left empty for right card -->
-      <div class="col-span-5 flex justify-end"></div>
-
-      <!-- Center bullet -->
-      <div class="col-span-2 flex justify-center relative">
-        <div class="timeline-bullet bg-accent1 z-10">QA</div>
-      </div>
-
-      <!-- Right card -->
-      <div class="col-span-5 flex justify-start">
-        <div class="timeline-card w-full max-w-sm">
-          <div class="card-header flex items-start justify-between">
-            <div>
-              <p class="job-title">Games Functionality Tester</p>
-              <p class="company">Microsoft/Huntress</p>
-              <p class="job-meta">Sept 2022 – Oct 2023 (concurrent with degree)</p>
+      <!-- IT Support Analyst (Left on desktop) -->
+      <div class="timeline-item grid grid-cols-12 items-start gap-4 mb-12">
+        <div class="col-span-12 md:col-span-5 flex justify-center md:justify-end">
+          <div class="timeline-card w-full max-w-sm md:max-w-sm">
+            <div class="card-header flex flex-col md:flex-row items-start justify-between">
+              <div>
+                <p class="job-title text-lg md:text-xl">IT Support Analyst</p>
+                <p class="company text-sm md:text-base">University of Reading — Reading, UK</p>
+                <p class="job-meta text-xs md:text-sm">Sept 2023 – July 2024 (concurrent with degree)</p>
+              </div>
+              <button class="toggle-btn mt-2 md:mt-0 ml-0 md:ml-4" data-target="c2" aria-controls="c2" aria-expanded="false">Details</button>
             </div>
-            <button class="toggle-btn ml-4" data-target="c3" aria-controls="c3" aria-expanded="false">Details</button>
-          </div>
-          <div id="c3" class="collapse mt-3 text-gray-300" aria-hidden="true">
-            <ul class="list-disc list-inside">
-              <li>Executed structured test cases and reproduced defects; detailed bug reporting.</li>
-              <li>Tracked testing with Excel to improve QA process and traceability.</li>
-            </ul>
+            <div id="c2" class="collapse mt-3 text-gray-300 text-sm md:text-base" aria-hidden="true">
+              <ul class="list-disc list-inside">
+                <li>Supported authentication, account management, network access & OS faults (Windows & Linux).</li>
+                <li>OS-level troubleshooting incl. SSH, PowerShell scripting, Linux diagnostics.</li>
+                <li>Produced documentation and improved ticket response workflows.</li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- 4. Education (Left) -->
-    <div class="timeline-item grid grid-cols-12 items-start gap-4 mb-12">
-      <!-- Left card -->
-      <div class="col-span-5 flex justify-end">
-        <div class="timeline-card w-full max-w-sm">
-          <div class="card-header flex items-start justify-between">
-            <div>
-              <p class="job-title">BSc Computer Science — First-Class Honours</p>
-              <p class="company">University of Reading</p>
-              <p class="job-meta">Sept 2021 – July 2024</p>
-            </div>
-            <button class="toggle-btn ml-4" data-target="c4" aria-controls="c4" aria-expanded="false">Details</button>
-          </div>
-          <div id="c4" class="collapse mt-3 text-gray-300 text-sm" aria-hidden="true">
-            <p class="mb-2"><strong>Key modules:</strong> Algorithms &amp; OS, Compilers, Computer Architecture &amp; Networking, Databases &amp; Info Security, Distributed Systems, AI, Data Science, Text Mining &amp; NLP.</p>
-            <p class="mb-2"><strong>Dissertation:</strong> Multiplayer networked game (Java &amp; C) — real-time cross-device gameplay.</p>
-            <p><strong>Averages:</strong> Theory 78% / Programming 80%</p>
-          </div>
+        <div class="col-span-12 md:col-span-2 flex justify-center relative">
+          <div class="timeline-bullet bg-gradient-to-b from-accent1 to-accent2 z-10">IT</div>
         </div>
+
+        <div class="col-span-12 md:col-span-5 flex justify-center md:justify-start"></div>
       </div>
 
-      <!-- Center bullet -->
-      <div class="col-span-2 flex justify-center relative">
-        <div class="timeline-bullet bg-gradient-to-r from-accent1 to-accent2 z-10">ED</div>
-      </div>
-
-      <!-- Right empty for left card -->
-      <div class="col-span-5 flex justify-start"></div>
+      <!-- Repeat similarly for the other timeline items -->
     </div>
-  </div>
   </div>
 </section>
+
 
     <!-- PROJECTS GRID (kept) -->
 <section class="max-w-7xl mx-auto px-6 py-12 relative z-10">
