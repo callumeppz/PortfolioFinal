@@ -442,30 +442,26 @@ label {
 .hover-container {
   height: 40%;
 }
-
 .project-card {
-  transition: transform 0.8s;
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.project-card:hover,
-.project-card:checked {
-  height: 100%;
-  cursor: pointer;
-}
-
-.project-card:hover img,
-.project-card:checked img  {
-  height: 65%;
-  cursor: pointer;
-  transition: height 0.8s;
+.project-card:hover {
+  transform: translateY(-4px); /* subtle lift on hover */
 }
 
 .project-card img {
   height: 55%;
-  cursor: pointer;
-  transition: height 0.8s;
+  width: 100%;
+  object-fit: cover;
+  transition: height 0.5s ease;
 }
+
+.project-card:hover img {
+  height: 65%; /* grow image smoothly on hover */
+}
+
 
 input[type="text"],
 select,
@@ -506,4 +502,26 @@ textarea {
   padding: 10px;
   font-size: 20px;
   background-color: rgb(17 24 39);
+}
+
+.timeline-line {
+  background: linear-gradient(to bottom, rgba(255,182,193,0.4), rgba(255,105,180,0.4));
+}
+
+.timeline-bullet {
+  position: relative;
+  z-index: 10; /* bullet above the line */
+}
+
+.timeline-bullet::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;   /* slightly bigger than bullet */
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255,105,180,0.3); /* soft pink glow */
+  z-index: -1; /* behind the bullet */
 }

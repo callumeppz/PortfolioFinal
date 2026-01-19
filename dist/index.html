@@ -1,319 +1,591 @@
+the project card sizes are messed up and the timeline is not aligning correctly, fix the whole code and give me the whole script back
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=yes" />
+  <title>Callum Apps — Embedded Software Engineer</title>
+  <meta name="description" content="Callum Apps — Embedded engineer specialising in low-level C, FPGA, and system design." />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2216WFVJ5"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-V2216WFVJ5');
-    </script>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-    />
-    <title>Callum Apps Portfolio</title>
-    <meta name="description" content="Computer Science Graduate" />
-    <meta name="robots" content="index, follow" />
-    <link rel="icon" href="dist/github.png" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="input.css" />
-    <link rel="stylesheet" href="output.css" />
-    <style>
-    
-    .iframe-container {
-  position: fixed;
-  bottom: 2%;
-  opacity: 0.5;
-  height: 30%;
-  width: 20%; /* Set initial width */
-  max-width: 90%; /* Set maximum width */
-  border-radius: 5px;
-  overflow: hidden;
-  border: none;
-  z-index: 999; 
-  transition: opacity 0.3s ease, height 0.3s ease, width 0.3s ease; /* Add width transition */
-}
-
-.iframe-container:hover {
-  height: 50%; 
-  width: 600px; /* Set expanded width */
-  opacity: 1;
-}
-    </style>
-  </head>
-
-
-    <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2216WFVJ5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
-
     gtag('config', 'G-V2216WFVJ5');
   </script>
 
-  <body class="overflow-hidden">
-    <script src="Darkmode.js"></script>
-    <header
-      nav
-      class="navbar flex-container p-2 sm:p-3 md:p-4 lg:p-6 bg-gray-900"
-    >
-      <nav
-        class="nav flex-item text-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4"
-      >
-        <a href="index.html">
-          <button
-            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
-          >
-            Home
-          </button>
-        </a>
-        <a href="Project1.html">
-          <button
-            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
-          >
-            Projects
-          </button>
-        </a>
-        <a href="About.html">
-          <button
-            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
-          >
-            About
-          </button>
-        </a>
-        <a href="ContactME.html">
-          <button
-            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
-          >
-            Contact Me
-          </button>
-        </a>
-        <a
-          class="self-left"
-          target="_blank"
-          href="https://github.com/callumeppz"
-        >
-          <button
-            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
-          >
-            GitHub
-          </button>
-        </a>
-        <label class="switch te bg-gray-900">
-          <input
-            id="darkModeToggle"
-            class="darkmode"
-            onclick="toggleDarkMode()"
-          />
-          <span class="slider bg-gray-900"></span>
-        </label>
-      </nav>
-    </header>
+  <!-- Tailwind (CDN build) -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    <!-- Main Content -->
-    <main class="p-4 md:p-8 lg:p-16">
-      <div class="welcome-text">
-        <div class="slider-thumb">
-          <div class="slider-thumb"></div>
-          <div class="text-container">
-            <h1
-              id="TITLE"
-              class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
-            >
-              <strong>Welcome</strong>
-            </h1>
-          </div>
+  <!-- keep original CSS files if present -->
+  <link rel="stylesheet" href="input.css" />
+  <link rel="stylesheet" href="output.css" />
 
-          <div class="textarea">
-            <hr class="my-4 md:my-8 lg:my-12 h-0.1 bg-gray-900" />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card-bg: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.06);
+      --accent1: #7c3aed;
+      --accent2: #06b6d4;
+      --muted: rgba(255,255,255,0.65);
+    }
 
-            <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
-              My name is Callum Apps and I'm a Computer <br />Science Student
-              based in Reading, UK. You can <br />find more about me, my work
-              and my <br />
-              interests on GitHub or LinkedIn.
-            </p>
-          </div>
+    /* base */
+    html, body {
+
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.08), transparent),
+              radial-gradient(900px 500px at 90% 90%, rgba(6,182,212,0.06), transparent),
+              var(--bg);
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+    /* animated blob behind hero */
+    .blob {
+      position:absolute;
+      width:1200px;
+      height:700px;
+      left:50%;
+      top:10%;
+      transform:translateX(-50%);
+      filter: blur(60px);
+      z-index:0;
+      background: conic-gradient(from 120deg, rgba(124,58,237,0.35), rgba(6,182,212,0.28), rgba(236,72,153,0.20));
+      mix-blend-mode: screen;
+      animation: blobAnim 12s linear infinite;
+      opacity:0.9;
+      border-radius:40%;
+    }
+    @keyframes blobAnim{
+      0%{transform:translate(-52%, -2%) rotate(0deg)}
+      25%{transform:translate(-48%, 1%) rotate(20deg)}
+      50%{transform:translate(-50%, -1%) rotate(0deg)}
+      75%{transform:translate(-46%, 2%) rotate(-20deg)}
+      100%{transform:translate(-52%, -2%) rotate(0deg)}
+    }
+
+    /* subtle particles */
+    .particle {
+      position:absolute; border-radius:50%;
+      background:linear-gradient(135deg, rgba(124,58,237,0.85), rgba(6,182,212,0.85));
+      opacity:0.18;
+      animation: float 10s ease-in-out infinite;
+      z-index:0;
+    }
+    @keyframes float{
+      0%{transform: translateY(0) translateX(0)}
+      50%{transform: translateY(-18px) translateX(6px)}
+      100%{transform: translateY(0) translateX(0)}
+    }
+
+    /* glassy card */
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.06);
+      backdrop-filter: blur(8px) saturate(120%);
+      -webkit-backdrop-filter: blur(8px) saturate(120%);
+    }
+
+    .neon {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .tilt {
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform 300ms cubic-bezier(.15,.9,.3,1), box-shadow 300ms;
+    }
+
+    /* skill bar */
+    .skill-track { background: rgba(255,255,255,0.06); height:10px; border-radius:999px; overflow:hidden; }
+    .skill-fill { height:100%; border-radius:999px; transform-origin:left; transform:scaleX(0); }
+
+    .btn-cv{
+      background: linear-gradient(90deg, rgba(124,58,237,1), rgba(6,182,212,1));
+      padding: .7rem 1.1rem;
+      border-radius: .75rem;
+      font-weight: 700;
+      box-shadow: 0 8px 30px rgba(6,182,212,0.08), inset 0 -6px 18px rgba(0,0,0,0.18);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .btn-cv:hover{ transform: translateY(-4px) scale(1.02); box-shadow: 0 18px 50px rgba(6,182,212,0.16); }
+
+
+    .timeline-card {
+  background: rgba(8, 12, 18, 0.6);
+  border-radius: 12px;
+  padding: 1rem;
+  max-width: 520px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.timeline-card:hover {
+  transform: translateY(-6px);
+  background: rgba(10, 14, 20, 0.75);
+}
+
+.timeline-bullet {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(76, 29, 149, 0.28);
+}
+
+    .collapse { max-height:0; overflow:hidden; transition: max-height 300ms ease, padding 200ms ease; }
+    .collapse.open { padding-top:.65rem; max-height:500px; }
+
+    .toggle-btn { background:transparent; border:1px solid rgba(255,255,255,.05); color:#dbeafe; padding:.32rem .6rem; border-radius:8px; font-size:.86rem; }
+    .toggle-btn:hover { background: rgba(124,58,237,0.06); }
+
+    @media (max-width: 768px) { .blob { display:none; } }
+
+    /* small helpers */
+    .muted { color:var(--muted); font-size:.95rem; }
+  </style>
+</head>
+<body>
+
+  <!-- decorative blob + particles -->
+  <div class="blob" aria-hidden="true"></div>
+  <div class="particle" style="width:18px;height:18px;left:8%;top:12%;animation-duration:9s"></div>
+  <div class="particle" style="width:10px;height:10px;left:24%;top:72%;animation-duration:12s"></div>
+  <div class="particle" style="width:14px;height:14px;left:78%;top:30%;animation-duration:11s"></div>
+  <div class="particle" style="width:22px;height:22px;left:88%;top:78%;animation-duration:14s"></div>
+
+<!-- HEADER (exact DOM/classes preserved) -->
+<header nav class="navbar flex-container p-2 sm:p-3 md:p-4 lg:p-6 bg-gray-900">
+  <nav class="nav flex-item text-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4" aria-label="Main navigation">
+    <a href="index.html">
+      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+        Home
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+      </button>
+    </a>
+    <a href="Project1.html">
+      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+        Projects
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+      </button>
+    </a>
+    <a href="About.html">
+      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+        About
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+      </button>
+    </a>
+    <a href="ContactME.html">
+      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+        Contact Me
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+      </button>
+    </a>
+    <a class="self-left" target="_blank" href="https://github.com/callumeppz" rel="noopener noreferrer">
+      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+        GitHub
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+      </button>
+    </a>
+  </nav>
+</header>
+
+<style>
+/* Animated underline effect */
+.tablinks:hover span,
+.tablinks:focus span {
+  width: 100%;
+}
+
+.tablinks {
+  /* subtle 3D shadow on hover */
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.tablinks:hover {
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+}
+</style>
+
+
+  <!-- HERO (from page 2) -->
+  <main class="relative z-20">
+    <div id="orb" class="slider-thumb idle" aria-hidden="true" style="position:absolute; left:50%; top:28%; width:160px; height:160px; margin-left:-80px; margin-top:-80px; border-radius:50%; background: radial-gradient(circle at 35% 30%, rgba(124,58,237,0.95), rgba(76,29,149,0.85) 60%, rgba(76,29,149,0.45) 100%); filter: blur(6px); mix-blend-mode:screen; z-index:0;"></div>
+
+    <section class="max-w-5xl mx-auto px-6 py-20 relative z-10">
+      <div class="text-center glass p-8 tilt" id="heroCard" style="box-shadow: 0 10px 40px rgba(2,6,23,0.6);">
+        <h class="neon text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4">Callum Apps — Embedded Software Engineer</h>
+        <p> ----</p>
+        <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">Low-level C, FPGA peripherals, register-level bring-up and UML system design. Experienced in Python, Java, shell scripting, and web development.</p>
+
+        <div class="mt-6 flex flex-wrap gap-2 justify-center" role="list">
+          <span class="chip" role="listitem">C (embedded)</span>
+          <span class="chip" role="listitem">FPGA</span>
+          <span class="chip" role="listitem">SysML &amp; UML</span>
+          <span class="chip" role="listitem">CAN / UART / SPI</span>
+          <span class="chip" role="listitem">Agile / JIRA</span>
+          <span class="chip" role="listitem">Data &amp; Excel</span>
+        </div>
+
+        <div class="mt-8 flex justify-center gap-4">
+          <a href="dist/Callum-Apps-CV.pdf" download class="btn-cv text-sm text-white inline-flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10l5 5 5-5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Download CV
+          </a>
         </div>
       </div>
+    </section>
     </main>
+<!-- TIMELINE -->
+<section class="max-w-6xl mx-auto px-6 py-12 relative z-10">
+  <div class="text-center glass p-8 tilt" id="heroCard" style="box-shadow: 0 10px 40px rgba(2,6,23,0.6);">
+  <div class="timeline-wrap relative">
+    <!-- Vertical timeline line -->
+    <div class="timeline-line absolute left-1/2 top-0 h-full w-1 bg-pink-500 rounded-full -translate-x-1/2 "></div>
 
-    <div class="iframe-container p-4 md:p-8 lg:p-16">
-      <iframe src="https://landbot.online/v3/H-2129949-TJ31ZNMOOOGHCJOV/index.html" style="width: 400px;height: 620px;box-shadow: 0 20px 80px rgba(0,0,0,.6);border-radius: 5px;overflow: hidden;border: none; display: inline-block;"></iframe>
-    </div>
+    <!-- 1. Graduate Software Engineer (Right) -->
+    <div class="timeline-item grid grid-cols-12 items-start gap-4 mb-12">
+      <!-- Left empty for right card -->
+      <div class="col-span-5 flex justify-end"></div>
 
-    <!-- Project Container -->
-
-    <div
-      class="description flex flex-col space-y-8 md:space-y-0 md:flex-row rounded bg-gray-900 mb-10"
-    >
-      <div
-        class="flex flex-col justify-center items-center p-8 md:w-1/2 lg:w-1/3"
-      >
-        <!-- Content for the first column -->
-        <p
-          class="info-text-short max-w-2xl bg-adadff p-6 mt-6 transition-transform duration-300 ease-in-out text-center bg-gray-900"
-        >
-          I'm a passionate Third-Year Computer Science student <br />enrolled at
-          the University of Reading. <br />My journey in this dynamic field has
-          equipped me with a diverse skill set that includes <br />proficiency
-          in several programming languages such as Java, C, Python, JavaScript,
-          and HTML/CSS. <br />
-          For a comprehensive overview of my academic background, skills, and
-          experiences, <br />please explore my About Me Page.
-        </p>
-        <button class="CVButton">
-          <a class="About Me" href="About.html"><strong>About Me</strong></a>
-        </button>
+      <!-- Center bullet -->
+      <div class="col-span-2 flex justify-center relative">
+        <div class="timeline-bullet bg-accent2 z-10">G</div>
       </div>
 
-      <div class="flex flex-col text-center md:w-1/5 lg:w-2/3">
-        <script src="ClickQuery.js"></script>
-        <script>
-          $(document).ready(function () {
-            $(".menu-products").on("click", function () {
-              $(this).find(".dropdown-products").toggle();
-            });
-          });
-        </script>
-        <h4><strong>Experience</strong></h4>
-        <ul>
-          <li id="menu-products">
-            <label for="dd" class="TRIAL">Skills and Experience</label>
-            <input type="checkbox" id="dd" hidden />
-            <ul id="dropdown-products">
-                <p>
-                    Having delved into the realm of Computer Science for the past 8 years, 
-                    starting from my GCSE days and now pursuing advanced studies at the university level, 
-                    my passion for computing has only deepened. A glance at my GitHub profile reveals a diverse array of projects, 
-                    spanning from fundamental HTML/CSS to more intricate, object-oriented languages like C++ and Python. <br>
-                    As I embark on a Graduate Software Engineer position, my aim is not only to thrive in the role but also to expand and 
-                    refine my current skill set. The prospect of contributing to innovative projects and continuous learning 
-                    in the dynamic landscape of software engineering excites me.
-                </p>
-              </li>
+      <!-- Right card -->
+      <div class="col-span-5 flex justify-start">
+        <div class="timeline-card w-full max-w-sm">
+          <div class="card-header flex items-start justify-between">
+            <div>
+              <p class="job-title">Graduate Software Engineer</p>
+              <p class="company">BAE Systems Inc., Rochester, Kent, UK</p>
+              <p class="job-meta">Sept 2024 – Present • SC Cleared</p>
+            </div>
+            <button class="toggle-btn ml-4" data-target="c1" aria-controls="c1" aria-expanded="false">Details</button>
+          </div>
+          <div id="c1" class="collapse mt-3 text-gray-300" aria-hidden="true">
+            <ul class="list-disc list-inside">
+              <li>Developed DO-178C Level C/D embedded firmware on ARM Cortex MCUs.</li>
+              <li>Engineered low-level C drivers &amp; CSU for FPGA-based systems.</li>
+              <li>Produced SysML architecture &amp; design documentation.</li>
+              <li>Integrated firmware via CI/CD (Jenkins, Bitbucket). JIRA &amp; Git.</li>
             </ul>
-        </ul>
-        <ul>
-          <li id="menu-products">
-            <label for="dd" class="TRIAL2"
-              >Project I am currently working on</label
-            >
-            <input type="checkbox" id="dd" hidden />
-            <ul id="dropdown-products">
-                <p>
-                    Currently, I am focused on refining my skills in C and Python programming languages, actively contributing to my GitHub with public revision guides aimed at helping others refresh their knowledge in these languages. This project not only allows me to delve into the fundamentals of Data Structures and Algorithms but also provides valuable support to fellow learners. <br>
-                    Simultaneously, my attention is dedicated to my dissertation, where I am employing network programming to develop a distinctive platformer game that seamlessly combines 2D and 3D aspects. Balancing this with my ongoing coursework adds a dynamic and rewarding dimension to my current endeavors.
-                  </p>
-                  
-            </ul>
-          </li>
-        </ul>
-        <ul>
-          <li id="menu-products">
-            <label for="dd" class="TRIAL3">Certifications & Grades</label>
-            <input type="checkbox" id="dd" hidden />
-            <ul id="dropdown-products">
-              <li>
-                I am persuing a certification in C# from Microsoft and FreeCodeCamp aswell as having a few differnt Linkedin Certifications.
-                However, I am most proud of my current grades at university, ranging from 65-100% in each of my pieces of coursework, averaging over 75% in my three years combined, and
-                on track to receive a first class degree in BSc Computer Science!
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <ul>
-          <li id="menu-products">
-            <label for="dd" class="TRIAL3">More about me</label>
-            <input type="checkbox" id="dd" hidden />
-            <ul id="dropdown-products">
-              <li>
-                <p>
-                    I currently live in Reading, but I'll soon be relocating for my new job. <br>
-                    Currently, I work as an IT Support Analyst for my university, where I assist staff and students with troubleshooting and other IT-related queries. <br>
-                    Outside of work, I have a passion for traveling and exploring. My goal is to visit as many countries in Europe as possible!
-                  </p>
-              </li>
-            </ul>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
-    
-  <!-- Hoverable Container -->
-  <div class="hover-container overflow-hidden">
-    <!-- Project Container -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-4">
-      <!-- Your existing project cards here -->
-      <!-- Project Card 1 -->
-      <div class="bg-gray-900 rounded-lg overflow-hidden shadow-md h-full project-card">
-        <img class="w-full object-cover transition-transform transform-gpu duration-300" src="droneimg.png" alt="Randomly Generating Maze" />
-        <div class="p-6 flex flex-col">
-          <p class="font-bold text-xl mb-2">Drone Simulator</p>
-          <p class="text-base">
-            This project was my first Java coursework in year 2 of university, which involved me having to create a system that simulated randomly moving, colliding drones.
-          </p>
-          <a href="Project1.html" class="mt-4 bg-gray-800 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded block">View Project</a>
+
+    <!-- 2. IT Support Analyst (Left) -->
+    <div class="timeline-item grid grid-cols-12 items-start gap-4 mb-12">
+      <!-- Left card -->
+      <div class="col-span-5 flex justify-end">
+        <div class="timeline-card w-full max-w-sm">
+          <div class="card-header flex items-start justify-between">
+            <div>
+              <p class="job-title">IT Support Analyst</p>
+              <p class="company">University of Reading — Reading, UK</p>
+              <p class="job-meta">Sept 2023 – July 2024 (concurrent with degree)</p>
+            </div>
+            <button class="toggle-btn ml-4" data-target="c2" aria-controls="c2" aria-expanded="false">Details</button>
+          </div>
+          <div id="c2" class="collapse mt-3 text-gray-300" aria-hidden="true">
+            <ul class="list-disc list-inside">
+              <li>Supported authentication, account management, network access &amp; OS faults (Windows &amp; Linux).</li>
+              <li>OS-level troubleshooting incl. SSH, PowerShell scripting, Linux diagnostics.</li>
+              <li>Produced documentation and improved ticket response workflows.</li>
+            </ul>
+          </div>
         </div>
       </div>
 
-  <!-- Project Card 2 -->
-  <div class="bg-gray-900 rounded-lg overflow-hidden shadow-md h-full project-card">
-    <img class="w-full object-cover transition-transform transform-gpu duration-300" src="mazegame.png" alt="Randomly Generating Maze" />
-    <div class="p-6 flex flex-col">
-      <p class="font-bold text-xl mb-2">Random Generating Maze</p>
-      <p class="text-base">
-        This involved me creating a randomly generating algorithm that ensured that there was always an exit; this was also my second Java coursework.
-      </p>
-      <a href="Project2.html" class="mt-4 bg-gray-800 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded block">View Project</a>
-    </div>
-  </div>
-
-  <!-- Project Card 3 -->
-  <div class="bg-gray-900 rounded-lg overflow-hidden shadow-md h-full project-card">
-    <img class="w-full object-cover transition-transform transform-gpu duration-300" src="DissProj.png" alt="Randomly Generating Maze" />
-    <div class="p-6 flex flex-col">
-      <p class="font-bold text-xl mb-2">Networked Unity Application</p>
-      <p class="text-base">
-        My dissertation project focused on Networked Multiplayer Games. This project was done in Unity and used the Photon extension to host for free.
-      </p>
-      <a href="Project3.html" class="mt-4 bg-gray-800 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded block">View Project</a>
-    </div>
-  </div>
-
-  <!-- Project Card 4 -->
-  <div class="bg-gray-900 rounded-lg overflow-hidden shadow-md h-full project-card">
-    <img class="w-full object-cover transition-transform transform-gpu duration-300" src="Webdev.png" alt="Randomly Generating Maze" />
-    <div class="p-6 flex flex-col">
-      <p class="font-bold text-xl mb-2">Website Development</p>
-      <p class="text-base">
-        This project involved the creation of this website with vanilla HTML, CSS, and elements of JavaScript using the Tailwind framework.
-      </p>
-      <a href="Project4.html" class="mt-4 bg-gray-800 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded block">View Project</a>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-
-    <!-- Footer for Social Links -->
-    <footer class="mt-8">
-      <div class="links text-center">
-        <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
-          Created in 2023, Social links:
-          <a target="_blank" href="https://github.com/callumeppz">GitHub</a>
-        </p>
+      <!-- Center bullet -->
+      <div class="col-span-2 flex justify-center relative">
+        <div class="timeline-bullet bg-gradient-to-b from-accent1 to-accent2 z-10">IT</div>
       </div>
-    </footer>
-  </body>
+
+      <!-- Right empty for left card -->
+      <div class="col-span-5 flex justify-start"></div>
+    </div>
+
+    <!-- 3. Games Functionality Tester (Right) -->
+    <div class="timeline-item grid grid-cols-12 items-start gap-4 mb-12">
+      <!-- Left empty for right card -->
+      <div class="col-span-5 flex justify-end"></div>
+
+      <!-- Center bullet -->
+      <div class="col-span-2 flex justify-center relative">
+        <div class="timeline-bullet bg-accent1 z-10">QA</div>
+      </div>
+
+      <!-- Right card -->
+      <div class="col-span-5 flex justify-start">
+        <div class="timeline-card w-full max-w-sm">
+          <div class="card-header flex items-start justify-between">
+            <div>
+              <p class="job-title">Games Functionality Tester</p>
+              <p class="company">Microsoft/Huntress</p>
+              <p class="job-meta">Sept 2022 – Oct 2023 (concurrent with degree)</p>
+            </div>
+            <button class="toggle-btn ml-4" data-target="c3" aria-controls="c3" aria-expanded="false">Details</button>
+          </div>
+          <div id="c3" class="collapse mt-3 text-gray-300" aria-hidden="true">
+            <ul class="list-disc list-inside">
+              <li>Executed structured test cases and reproduced defects; detailed bug reporting.</li>
+              <li>Tracked testing with Excel to improve QA process and traceability.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Education (Left) -->
+    <div class="timeline-item grid grid-cols-12 items-start gap-4 mb-12">
+      <!-- Left card -->
+      <div class="col-span-5 flex justify-end">
+        <div class="timeline-card w-full max-w-sm">
+          <div class="card-header flex items-start justify-between">
+            <div>
+              <p class="job-title">BSc Computer Science — First-Class Honours</p>
+              <p class="company">University of Reading</p>
+              <p class="job-meta">Sept 2021 – July 2024</p>
+            </div>
+            <button class="toggle-btn ml-4" data-target="c4" aria-controls="c4" aria-expanded="false">Details</button>
+          </div>
+          <div id="c4" class="collapse mt-3 text-gray-300 text-sm" aria-hidden="true">
+            <p class="mb-2"><strong>Key modules:</strong> Algorithms &amp; OS, Compilers, Computer Architecture &amp; Networking, Databases &amp; Info Security, Distributed Systems, AI, Data Science, Text Mining &amp; NLP.</p>
+            <p class="mb-2"><strong>Dissertation:</strong> Multiplayer networked game (Java &amp; C) — real-time cross-device gameplay.</p>
+            <p><strong>Averages:</strong> Theory 78% / Programming 80%</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center bullet -->
+      <div class="col-span-2 flex justify-center relative">
+        <div class="timeline-bullet bg-gradient-to-r from-accent1 to-accent2 z-10">ED</div>
+      </div>
+
+      <!-- Right empty for left card -->
+      <div class="col-span-5 flex justify-start"></div>
+    </div>
+  </div>
+  </div>
+</section>
+
+    <!-- PROJECTS GRID (kept) -->
+<section class="max-w-7xl mx-auto px-6 py-12 relative z-10">
+  <div class="text-center glass p-8 tilt" id="heroCard" style="box-shadow: 0 10px 40px rgba(2,6,23,0.6);">
+  <h3 class="text-2xl font-semibold mb-6">Academic Projects</h3>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    
+    <!-- Project 1 -->
+    <article class="project-card rounded-lg overflow-hidden bg-gray-900 hover:shadow-lg transition-shadow focus-within:ring-2 focus-within:ring-purple-500" tabindex="0">
+      <img class="project-img w-full h-48 object-cover" src="droneimg.png" alt="Drone simulator screenshot" loading="lazy">
+      <div class="p-4">
+        <h4 class="font-semibold text-white mb-1">Drone Simulator</h4>
+        <p class="text-sm text-gray-300 mb-3">Java coursework simulating randomized drone motion &amp; collisions.</p>
+        <a href="Project1.html" class="inline-block px-3 py-2 rounded bg-purple-600 hover:bg-purple-500 text-sm text-white transition-colors">View Project</a>
+      </div>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="project-card rounded-lg overflow-hidden bg-gray-900 hover:shadow-lg transition-shadow focus-within:ring-2 focus-within:ring-purple-500" tabindex="0">
+      <img class="project-img w-full h-48 object-cover" src="mazegame.png" alt="Maze generator screenshot" loading="lazy">
+      <div class="p-4">
+        <h4 class="font-semibold text-white mb-1">Random Maze Generator</h4>
+        <p class="text-sm text-gray-300 mb-3">Algorithmic maze generation with guaranteed solvable exits.</p>
+        <a href="Project2.html" class="inline-block px-3 py-2 rounded bg-purple-600 hover:bg-purple-500 text-sm text-white transition-colors">View Project</a>
+      </div>
+    </article>
+
+    <!-- Project 3 -->
+    <article class="project-card rounded-lg overflow-hidden bg-gray-900 hover:shadow-lg transition-shadow focus-within:ring-2 focus-within:ring-purple-500" tabindex="0">
+      <img class="project-img w-full h-48 object-cover" src="DissProj.png" alt="Networked Unity project screenshot" loading="lazy">
+      <div class="p-4">
+        <h4 class="font-semibold text-white mb-1">Networked Unity Application</h4>
+        <p class="text-sm text-gray-300 mb-3">Dissertation: multiplayer networking with Unity + Photon.</p>
+        <a href="Project3.html" class="inline-block px-3 py-2 rounded bg-purple-600 hover:bg-purple-500 text-sm text-white transition-colors">View Project</a>
+      </div>
+    </article>
+
+    <!-- Project 4 -->
+    <article class="project-card rounded-lg overflow-hidden bg-gray-900 hover:shadow-lg transition-shadow focus-within:ring-2 focus-within:ring-purple-500" tabindex="0">
+      <img class="project-img w-full h-48 object-cover" src="Webdev.png" alt="Web portfolio screenshot" loading="lazy">
+      <div class="p-4">
+        <h4 class="font-semibold text-white mb-1">Website Development</h4>
+        <p class="text-sm text-gray-300 mb-3">Portfolio built with HTML, CSS, JS &amp; Tailwind.</p>
+        <a href="Project4.html" class="inline-block px-3 py-2 rounded bg-purple-600 hover:bg-purple-500 text-sm text-white transition-colors">View Project</a>
+      </div>
+    </article>
+
+  </div>
+  </div>
+</section>
+
+    <!-- Quick contact / CV & Links (kept) -->
+    <section class="max-w-5xl mx-auto px-6 pb-8 relative z-10">
+      <div class="bg-gray-800 p-6 rounded-lg glass flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <p class="font-semibold">Callum Apps</p>
+          <p class="muted mb-1">+44 7735 013801 • Callum.apps@Icloud.com</p>
+          <a href="https://www.linkedin.com/in/callum-apps/" target="_blank" rel="noopener noreferrer" class="muted underline">LinkedIn</a>
+        </div>
+        <div class="flex gap-3">
+          <a href="dist/Callum-Apps-CV.pdf" download class="px-4 py-2 bg-purple-600 rounded-md hover:bg-purple-500">Download CV</a>
+          <a href="https://github.com/callumeppz" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-gray-700 rounded-md hover:bg-gray-600">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER (from page 1 style) -->
+  <footer class="relative z-20 border-t border-white border-opacity-6">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between text-sm text-gray-400">
+      <div>© <strong>Callum Apps</strong></div>
+      <div class="mt-3 md:mt-0">Created 2023 • <a target="_blank" href="https://github.com/callumeppz" class="text-white underline">GitHub</a></div>
+    </div>
+  </footer>
+
+  <!-- JS: orb + accordion + tilt + skill animations + small accessibility enhancements -->
+  <script>
+    // Parallax orb (idle float + pointer follow)
+    (function(){
+      const orb = document.getElementById('orb');
+      if (!orb) return;
+      let idleTimeout;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { orb.classList.add('idle'); return; }
+      orb.classList.add('idle');
+
+      function onMove(e) {
+        orb.classList.remove('idle'); clearTimeout(idleTimeout);
+        const cx = window.innerWidth / 2; const cy = window.innerHeight / 3;
+        const clientX = (e.clientX !== undefined) ? e.clientX : (e.touches && e.touches[0] && e.touches[0].clientX) || cx;
+        const clientY = (e.clientY !== undefined) ? e.clientY : (e.touches && e.touches[0] && e.touches[0].clientY) || cy;
+        const dx = (clientX - cx) / cx; const dy = (clientY - cy) / cy;
+        const tx = Math.max(-36, Math.min(36, dx * 36));
+        const ty = Math.max(-26, Math.min(26, dy * 26));
+        orb.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+        idleTimeout = setTimeout(()=> orb.classList.add('idle'), 900);
+      }
+
+      window.addEventListener('pointermove', onMove, {passive:true});
+      window.addEventListener('touchmove', onMove, {passive:true});
+    })();
+
+    // Accordion w/ auto-close (from page 2)
+    (function(){
+      const buttons = Array.from(document.querySelectorAll('.toggle-btn'));
+      function closeAll() {
+        document.querySelectorAll('.collapse.open').forEach(panel => {
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          requestAnimationFrame(() => {
+            panel.style.maxHeight = '0px';
+            panel.classList.remove('open');
+            panel.setAttribute('aria-hidden','true');
+          });
+        });
+        buttons.forEach(b => b.setAttribute('aria-expanded','false'));
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = document.getElementById(btn.getAttribute('data-target'));
+          if (!target) return;
+          const isOpen = target.classList.contains('open');
+          if (isOpen) {
+            target.style.maxHeight = target.scrollHeight + 'px';
+            requestAnimationFrame(() => {
+              target.style.maxHeight = '0px';
+              target.classList.remove('open');
+              target.setAttribute('aria-hidden','true');
+              btn.setAttribute('aria-expanded','false');
+            });
+          } else {
+            closeAll();
+            target.classList.add('open');
+            target.setAttribute('aria-hidden','false');
+            btn.setAttribute('aria-expanded','true');
+            target.style.maxHeight = target.scrollHeight + 'px';
+            target.addEventListener('transitionend', function te(){
+              if (target.classList.contains('open')) target.style.maxHeight = 'none';
+              target.removeEventListener('transitionend', te);
+            });
+          }
+        });
+      });
+
+      // Initialize closed
+      document.querySelectorAll('.collapse').forEach(c => { c.style.maxHeight = '0px'; c.classList.remove('open'); c.setAttribute('aria-hidden','true'); });
+    })();
+
+    // tilt interaction for elements with class 'tilt' (from page 1)
+    (function(){
+      const tiltable = document.querySelectorAll('.tilt');
+      tiltable.forEach(el=>{
+        el.addEventListener('mousemove', (e)=>{
+          const rect = el.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+          const rotY = (x - 0.5) * 10;
+          const rotX = (0.5 - y) * 8;
+          el.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(6px)`;
+          el.style.boxShadow = `0 20px 50px rgba(2,6,23,0.6)`;
+        });
+        el.addEventListener('mouseleave', ()=>{
+          el.style.transform = '';
+          el.style.boxShadow = '';
+        });
+      });
+    })();
+
+    // animate skill bars on viewport enter (from page 1)
+    (function(){
+      const fills = document.querySelectorAll('.skill-fill');
+      const animateFills = () => {
+        fills.forEach(f=>{
+          const val = parseFloat(f.getAttribute('data-fill')) || 0;
+          f.style.transform = `scaleX(${val})`;
+          f.style.transition = 'transform 1000ms cubic-bezier(.2,.9,.3,1)';
+        });
+      };
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            animateFills();
+            obs.disconnect();
+          }
+        });
+      }, {threshold: 0.25});
+      const main = document.querySelector('main');
+      if (main) observer.observe(main);
+    })();
+
+    // small accessible enhancement: focus states for links
+    document.querySelectorAll('a,button').forEach(el=>el.setAttribute('tabindex','0'));
+  </script>
+
+</body>
 </html>

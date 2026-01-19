@@ -1,89 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Callum Apps Portfolio</title>
-    <meta name="description" content="Computer Science Graduate">
-    <meta name="robots" content="index, follow">
-    <link rel="icon" href="dist/github.png">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="output.css">
-    <link rel="stylesheet" href="input.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Callum Apps — Portfolio</title>
+  <meta name="description" content="Callum Apps — Computer Science Graduate & Embedded Software Engineer" />
+  <meta name="theme-color" content="#0f172a" />
 
+  <!-- Tailwind (CDN build) -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card-bg: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.06);
+      --accent1: #7c3aed;
+      --accent2: #06b6d4;
+      --muted: rgba(255,255,255,0.65);
+    }
+
+    /* page base */
+    html,body{height:100%}
+    body{
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.08), transparent),
+                  radial-gradient(900px 500px at 90% 90%, rgba(6,182,212,0.06), transparent),
+                  var(--bg);
+      color: white;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* animated blob behind hero */
+    .blob {
+      position:absolute;
+      width:1200px;
+      height:700px;
+      left:50%;
+      top:10%;
+      transform:translateX(-50%);
+      filter: blur(60px);
+      z-index:0;
+      background: conic-gradient(from 120deg, rgba(124,58,237,0.35), rgba(6,182,212,0.28), rgba(236,72,153,0.20));
+      mix-blend-mode: screen;
+      animation: blobAnim 12s linear infinite;
+      opacity:0.9;
+      border-radius:40%;
+    }
+    @keyframes blobAnim{
+      0%{transform:translate(-52%, -2%) rotate(0deg)}
+      25%{transform:translate(-48%, 1%) rotate(20deg)}
+      50%{transform:translate(-50%, -1%) rotate(0deg)}
+      75%{transform:translate(-46%, 2%) rotate(-20deg)}
+      100%{transform:translate(-52%, -2%) rotate(0deg)}
+    }
+
+    /* subtle particles */
+    .particle {
+      position:absolute; border-radius:50%;
+      background:linear-gradient(135deg, rgba(124,58,237,0.85), rgba(6,182,212,0.85));
+      opacity:0.18;
+      animation: float 10s ease-in-out infinite;
+      z-index:0;
+    }
+    @keyframes float{
+      0%{transform: translateY(0) translateX(0)}
+      50%{transform: translateY(-18px) translateX(6px)}
+      100%{transform: translateY(0) translateX(0)}
+    }
+
+    /* glassy card */
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.06);
+      backdrop-filter: blur(8px) saturate(120%);
+      -webkit-backdrop-filter: blur(8px) saturate(120%);
+    }
+
+    /* neon accent for headings */
+    .neon {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* tilt transform smoothing */
+    .tilt {
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform 300ms cubic-bezier(.15,.9,.3,1), box-shadow 300ms;
+    }
+
+    /* skill bar */
+    .skill-track { background: rgba(255,255,255,0.06); height:10px; border-radius:999px; overflow:hidden; }
+    .skill-fill { height:100%; border-radius:999px; transform-origin:left; transform:scaleX(0); }
+
+    /* cool button */
+    .btn-cv{
+      background: linear-gradient(90deg, rgba(124,58,237,1), rgba(6,182,212,1));
+      padding: .7rem 1.1rem;
+      border-radius: .75rem;
+      font-weight: 700;
+      box-shadow: 0 8px 30px rgba(6,182,212,0.08), inset 0 -6px 18px rgba(0,0,0,0.18);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .btn-cv:hover{ transform: translateY(-4px) scale(1.02); box-shadow: 0 18px 50px rgba(6,182,212,0.16); }
+
+    /* tiny responsive tweaks */
+    @media (max-width: 768px) {
+      .blob { display:none; }
+    }
+
+    /* text shadow accent for headlines */
+    .headline-shadow { text-shadow: 0 6px 30px rgba(7,10,20,0.6); }
+  </style>
 </head>
+<body>
 
-<body class="bg-gray-900">
+  <!-- decorative blob + particles -->
+  <div class="blob" aria-hidden="true"></div>
+  <div class="particle" style="width:18px;height:18px;left:8%;top:12%;animation-duration:9s"></div>
+  <div class="particle" style="width:10px;height:10px;left:24%;top:72%;animation-duration:12s"></div>
+  <div class="particle" style="width:14px;height:14px;left:78%;top:30%;animation-duration:11s"></div>
+  <div class="particle" style="width:22px;height:22px;left:88%;top:78%;animation-duration:14s"></div>
 
-    <body class="overflow-hidden">
-        <script src="Darkmode.js"></script>
-        <header nav class="navbar flex-container p-2 sm:p-3 md:p-4 lg:p-6 bg-gray-900">
-            <nav class="nav flex-item text-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4">
-                <a href="index.html">
-                    <button class="tablinks bg-gray-900 hover:text-purple-900 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-                        Home
-                    </button>
-                </a>
-                <a href="Project1.html">
-                    <button class="tablinks bg-gray-900 hover:text-purple-900 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-                        Projects
-                    </button>
-                </a>
-                <a href="About.html">
-                    <button class="tablinks bg-gray-900 hover:text-purple-900 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-                        About
-                    </button>
-                </a>
-                <a href="ContactME.html">
-                    <button class="tablinks bg-gray-900 hover:text-purple-900 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-                        Contact Me
-                    </button>
-                </a>
-                <a class="self-left" target="_blank" href="https://github.com/callumeppz">
-                    <button class="tablinks bg-gray-900 hover:text-purple-900 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-                        GitHub
-                    </button>
-                </a>
-                <label class="switch te">
-                    <input id="darkModeToggle" class="darkmode" onclick="toggleDarkMode()">
-                    <span class="slider round"></span>
-                  </label>
-            </nav>
-        </header>
-        
-    <!-- Main Content -->
-    <main class="p-4 md:p-8 lg:p-16">
-        <div class="welcome-text">
-            <div class="slider-thumb">
-                <div class="text-container">
-                    <h1 id="TITLE" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">About Me</h1>
+  <!-- NAV -->
+
+    <!-- HEADER (exact DOM/classes preserved for your CSS) -->
+    <header
+      nav
+      class="navbar flex-container p-2 sm:p-3 md:p-4 lg:p-6 bg-gray-900"
+    >
+      <nav
+        class="nav flex-item text-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4"
+        aria-label="Main navigation"
+      >
+        <a href="index.html">
+          <button
+            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
+          >
+            Home
+          </button>
+        </a>
+        <a href="Project1.html">
+          <button
+            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
+          >
+            Projects
+          </button>
+        </a>
+        <a href="About.html">
+          <button
+            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
+          >
+            About
+          </button>
+        </a>
+        <a href="ContactME.html">
+          <button
+            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
+          >
+            Contact Me
+          </button>
+        </a>
+        <a
+          class="self-left"
+          target="_blank"
+          href="https://github.com/callumeppz"
+          rel="noopener noreferrer"
+        >
+          <button
+            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
+          >
+            GitHub
+          </button>
+        </a>
+      </nav>
+    </header>
+
+  <!-- MAIN HERO -->
+  <main class="relative z-20">
+    <section class="max-w-6xl mx-auto px-6 pt-12 pb-24 md:pb-36 lg:pb-44">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        <!-- left: hero info -->
+        <div class="md:col-span-7 space-y-6">
+          <div class="glass p-6 md:p-8 rounded-2xl tilt" id="heroCard" style="box-shadow: 0 10px 40px rgba(2,6,23,0.6);">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="text-sm text-gray-300">Software Engineer • Embedded • Web</div>
+                <h1 class="mt-2 text-3xl sm:text-4xl md:text-5xl font-extrabold neon headline-shadow">
+                  Callum Apps
+                </h1>
+                <p class="mt-3 text-gray-300 max-w-xl text-base md:text-lg leading-relaxed">
+                  I design resilient embedded firmware and elegant web tools — combining low-level C for ARM Cortex
+                  microcontrollers with full-stack pragmatism. I love turning hardware constraints into efficient code.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-3">
+                  <a href="Apps-Callum-CV.docx" download class="btn-cv text-sm text-white inline-flex items-center gap-3">
+                    <!-- download icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10l5 5 5-5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Download CV
+                  </a>
+
+                  <a href="ContactME.html" class="inline-flex items-center px-4 py-2 rounded-lg bg-white bg-opacity-6 hover:bg-opacity-12 transition text-sm font-medium">
+                    Contact Me
+                  </a>
                 </div>
+              </div>
 
-                <div class="textarea">
-                    <hr class="my-4 md:my-8 lg:my-12 h-0.1 bg-white-800">
-
-                    <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
-                        Find my attatched CV below for more about me and my experiences.
-                    </p>
-                    <button class="CVButton">
-                        <a href="Apps, Callum Curriculum Vitae .docx">My Cv</a>
-                        </button>
-                
+              <!-- avatar / micro stats -->
+              <div class="ml-6 hidden md:flex md:flex-col items-center space-y-3">
+                <div class="w-28 h-28 rounded-2xl" style="background:linear-gradient(135deg,var(--accent2),var(--accent1)); display:flex; align-items:center; justify-content:center; box-shadow: 0 12px 40px rgba(124,58,237,0.14);">
+                  <div class="text-white font-extrabold text-2xl">CA</div>
                 </div>
+                <div class="text-sm text-gray-300 text-center">
+                  <div><strong>SC Cleared</strong></div>
+                  <div class="text-xs text-gray-400">BAE Systems — Graduate Engineer</div>
+                </div>
+              </div>
             </div>
-        </div>
-    </main>
+          </div>
 
-    <!-- Footer for Social Links -->
-    <footer class="mt-8">
-        <div class="links text-center">
-            <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">Created in 2023, Social links:
-                <a target="_blank" href="https://github.com/callumeppz">GitHub</a>
-            </p>
         </div>
-    </footer>
 
+        <!-- right: skills / details -->
+        <aside class="md:col-span-5 space-y-6">
+          <div class="glass p-6 rounded-2xl tilt">
+            <h3 class="text-lg font-semibold neon">Skills & Tools</h3>
+            <p class="text-sm text-gray-300 mt-2">A few tools I reach for when solving problems.</p>
+
+            <div class="mt-4 space-y-4">
+              <!-- skill item -->
+              <div>
+                <div class="flex justify-between text-sm text-gray-300 mb-2">
+                  <div>Low-level Embedded C</div><div>90%</div>
+                </div>
+                <div class="skill-track"><div class="skill-fill" data-fill="0.9" style="background:linear-gradient(90deg,var(--accent1),var(--accent2));"></div></div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-sm text-gray-300 mb-2">
+                  <div>Systems & Architecture</div><div>82%</div>
+                </div>
+                <div class="skill-track"><div class="skill-fill" data-fill="0.82" style="background:linear-gradient(90deg,#f97316,#fb7185);"></div></div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-sm text-gray-300 mb-2">
+                  <div>Web & Tooling</div><div>76%</div>
+                </div>
+                <div class="skill-track"><div class="skill-fill" data-fill="0.76" style="background:linear-gradient(90deg,#06b6d4,#3b82f6);"></div></div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-sm text-gray-300 mb-2">
+                  <div>Testing & QA</div><div>74%</div>
+                </div>
+                <div class="skill-track"><div class="skill-fill" data-fill="0.74" style="background:linear-gradient(90deg,#10b981,#84cc16);"></div></div>
+              </div>
+            </div>
+          </div>
+
+    
+            </pre>
+          </div>
+
+          <!-- social -->
+          <div class="glass p-4 rounded-2xl tilt text-center">
+            <div class="text-sm text-gray-300">Find me</div>
+            <div class="mt-3 flex items-center justify-center gap-4">
+              <a target="_blank" href="https://github.com/callumeppz" class="p-2 rounded-md hover:scale-110 transition transform">
+                <!-- github icon -->
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 .5C5.73.5.99 5.24.99 11.5c0 4.7 3.07 8.68 7.33 10.08.54.1.73-.23.73-.51 0-.25-.01-.92-.01-1.8-2.98.65-3.61-1.44-3.61-1.44-.49-1.25-1.2-1.58-1.2-1.58-.98-.67.07-.66.07-.66 1.08.08 1.65 1.11 1.65 1.11.96 1.64 2.52 1.17 3.14.9.1-.7.38-1.17.69-1.44-2.38-.27-4.88-1.19-4.88-5.29 0-1.17.42-2.12 1.11-2.87-.11-.27-.48-1.35.11-2.81 0 0 .9-.29 2.95 1.1A10.2 10.2 0 0112 6.84c.91.004 1.83.12 2.69.35 2.05-1.4 2.95-1.1 2.95-1.1.59 1.46.22 2.54.11 2.81.69.75 1.11 1.7 1.11 2.87 0 4.11-2.5 5.02-4.88 5.29.39.33.73.97.73 1.95 0 1.41-.01 2.55-.01 2.9 0 .28.19.62.74.51C20.91 20.18 24 16.2 24 11.5 24 5.24 18.27.5 12 .5z" clip-rule="evenodd"/></svg>
+              </a>
+              <a target="_blank" href="mailto:callum.apps@icloud.com" class="p-2 rounded-md hover:scale-110 transition transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M21 8v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/></svg>
+              </a>
+              <a target="_blank" href="https://www.linkedin.com" class="p-2 rounded-md hover:scale-110 transition transform">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.238-5 5v14c0 2.762 2.239 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.762-2.238-5-5-5zm-11.5 19h-2.5v-8.5h2.5v8.5zm-1.25-9.727c-.8 0-1.45-.667-1.45-1.491 0-.825.65-1.492 1.45-1.492.8 0 1.45.667 1.45 1.492 0 .824-.65 1.491-1.45 1.491zm12.75 9.727h-2.5v-4.6c0-1.098-.02-2.507-1.528-2.507-1.529 0-1.763 1.193-1.763 2.427v4.68h-2.5v-8.5h2.4v1.17h.03c.334-.63 1.15-1.295 2.37-1.295 2.53 0 3 1.664 3 3.825v4.8z"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="relative z-20 border-t border-white border-opacity-6">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between text-sm text-gray-400">
+      <div>© <strong>Callum Apps</strong></div>
+      <div class="mt-3 md:mt-0">Created 2023 • <a target="_blank" href="https://github.com/callumeppz" class="text-white underline">GitHub</a></div>
+    </div>
+  </footer>
+
+  <!-- JS: interactions -->
+  <script>
+    // mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    if (mobileBtn) {
+      mobileBtn.addEventListener('click', ()=> mobileNav.classList.toggle('hidden'));
+    }
+
+    // theme toggle (light/dark via CSS vars)
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const applyTheme = (dark) => {
+      if (dark) {
+        document.documentElement.style.setProperty('--bg','#f8fafc');
+        document.documentElement.style.setProperty('--card-bg','rgba(2,6,23,0.04)');
+        document.documentElement.style.setProperty('--glass','rgba(0,0,0,0.04)');
+        document.body.style.color = '#071123';
+        themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>';
+      } else {
+        document.documentElement.style.setProperty('--bg','#0b1220');
+        document.documentElement.style.setProperty('--card-bg','rgba(255,255,255,0.04)');
+        document.documentElement.style.setProperty('--glass','rgba(255,255,255,0.06)');
+        document.body.style.color = '';
+        themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>';
+      }
+    }
+    themeToggle && themeToggle.addEventListener('click', ()=>{
+      const light = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() === '#f8fafc';
+      applyTheme(!light);
+    });
+
+    // tilt interaction for elements with class 'tilt'
+    const tiltable = document.querySelectorAll('.tilt');
+    tiltable.forEach(el=>{
+      el.addEventListener('mousemove', (e)=>{
+        const rect = el.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        const rotY = (x - 0.5) * 10;
+        const rotX = (0.5 - y) * 8;
+        el.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(6px)`;
+        el.style.boxShadow = `0 20px 50px rgba(2,6,23,0.6)`;
+      });
+      el.addEventListener('mouseleave', ()=>{
+        el.style.transform = '';
+        el.style.boxShadow = '';
+      });
+    });
+
+    // animate skill bars on viewport enter
+    const fills = document.querySelectorAll('.skill-fill');
+    const animateFills = () => {
+      fills.forEach(f=>{
+        const val = parseFloat(f.getAttribute('data-fill')) || 0;
+        f.style.transform = `scaleX(${val})`;
+        f.style.transition = 'transform 1000ms cubic-bezier(.2,.9,.3,1)';
+      });
+    }
+    // intersection observer to avoid animating before visible
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          animateFills();
+          obs.disconnect();
+        }
+      });
+    }, {threshold: 0.25});
+    observer.observe(document.querySelector('main'));
+
+    // small accessible enhancement: focus states for links
+    document.querySelectorAll('a,button').forEach(el=>el.setAttribute('tabindex','0'));
+  </script>
 </body>
-
 </html>
