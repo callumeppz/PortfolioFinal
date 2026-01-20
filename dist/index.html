@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=yes" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
   <title>Callum Apps — Embedded Software Engineer</title>
   <meta name="description" content="Callum Apps — Embedded engineer specialising in low-level C, FPGA, and system design." />
 
-  <!-- Google tag (gtag.js) -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2216WFVJ5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -15,626 +15,460 @@
     gtag('config', 'G-V2216WFVJ5');
   </script>
 
-  <!-- Tailwind (CDN build) -->
+  <!-- Tailwind CDN -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Google font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-  <!-- keep original CSS files if present -->
   <link rel="stylesheet" href="input.css" />
   <link rel="stylesheet" href="output.css" />
 
   <style>
     :root{
       --bg:#0b1220;
-      --card-bg: rgba(255,255,255,0.04);
-      --glass: rgba(255,255,255,0.06);
-      --accent1: #7c3aed;
-      --accent2: #06b6d4;
-      --muted: rgba(255,255,255,0.65);
+      --muted:rgba(255,255,255,0.68);
+      --card:rgba(255,255,255,0.03);
+      --accent1:#7c3aed;
+      --accent2:#06b6d4;
+      --glass:rgba(255,255,255,0.04);
     }
 
-    /* base */
-    html, body {
+    body{
+      margin:0;
+      font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      background:linear-gradient(180deg,#0b1220,#080f1a);
+      color:#fff;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+    }
 
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-body {
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.08), transparent),
-              radial-gradient(900px 500px at 90% 90%, rgba(6,182,212,0.06), transparent),
-              var(--bg);
-  color: white;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-    /* animated blob behind hero */
-    .blob {
+    .muted{ color:var(--muted); }
+    .glass{ background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); backdrop-filter:blur(12px) saturate(120%); }
+    .neon{ background:linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+    /* Header */
+    header.site-header{
+      background:rgba(11,18,32,0.3);
+      backdrop-filter:blur(12px);
+      padding:1.5rem 0;
+      z-index:50;
+      position:sticky;
+      top:0;
+    }
+    .brand{ font-weight:800; letter-spacing:-0.5px; font-size:1.5rem; }
+    .nav-links a{
+      padding:.6rem .8rem;
+      border-radius:10px;
+      font-weight:600;
+      color:rgba(255,255,255,0.9);
+      transition:color 0.2s;
+    }
+    .nav-links a:hover{ color:var(--accent1); }
+
+    /* Hero */
+    .hero-blob{
       position:absolute;
-      width:1200px;
-      height:700px;
-      left:50%;
-      top:10%;
-      transform:translateX(-50%);
-      filter: blur(60px);
+      inset:0;
+      height:500px;
+      width:100%;
+      pointer-events:none;
       z-index:0;
-      background: conic-gradient(from 120deg, rgba(124,58,237,0.35), rgba(6,182,212,0.28), rgba(236,72,153,0.20));
-      mix-blend-mode: screen;
-      animation: blobAnim 12s linear infinite;
-      opacity:0.9;
-      border-radius:40%;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+    }
+    .hero-blob>.blob{
+      width:1000px;
+      height:500px;
+      border-radius:42%;
+      filter:blur(64px);
+      background:conic-gradient(from 120deg,rgba(124,58,237,0.34),rgba(6,182,212,0.28),rgba(236,72,153,0.18));
+      mix-blend-mode:screen;
+      opacity:0.92;
+      animation:blobAnim 14s linear infinite;
     }
     @keyframes blobAnim{
-      0%{transform:translate(-52%, -2%) rotate(0deg)}
-      25%{transform:translate(-48%, 1%) rotate(20deg)}
-      50%{transform:translate(-50%, -1%) rotate(0deg)}
-      75%{transform:translate(-46%, 2%) rotate(-20deg)}
-      100%{transform:translate(-52%, -2%) rotate(0deg)}
+      0%{transform:translateY(-10%) rotate(0deg);}
+      50%{transform:translateY(-14%) rotate(12deg);}
+      100%{transform:translateY(-10%) rotate(0deg);}
     }
+    @media (prefers-reduced-motion: reduce){ .hero-blob>.blob{ animation:none; } }
+    .particle{ position:absolute; border-radius:999px; opacity:0.15; mix-blend-mode:screen; }
 
-    /* subtle particles */
-    .particle {
-      position:absolute; border-radius:50%;
-      background:linear-gradient(135deg, rgba(124,58,237,0.85), rgba(6,182,212,0.85));
-      opacity:0.18;
-      animation: float 10s ease-in-out infinite;
-      z-index:0;
+    .hero-card{
+      position:relative;
+      z-index:10;
+      padding:3rem;
+      max-width:5xl;
+      text-align:center;
+      margin:0 auto;
+      border-radius:2rem;
+      box-shadow:0 20px 50px rgba(0,0,0,0.5);
     }
-    @keyframes float{
-      0%{transform: translateY(0) translateX(0)}
-      50%{transform: translateY(-18px) translateX(6px)}
-      100%{transform: translateY(0) translateX(0)}
-    }
-
-    /* glassy card */
-    .glass {
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border: 1px solid rgba(255,255,255,0.06);
-      backdrop-filter: blur(8px) saturate(120%);
-      -webkit-backdrop-filter: blur(8px) saturate(120%);
-    }
-
-    .neon {
-      background: linear-gradient(90deg, var(--accent1), var(--accent2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .tilt {
-      transform-style: preserve-3d;
-      will-change: transform;
-      transition: transform 300ms cubic-bezier(.15,.9,.3,1), box-shadow 300ms;
-    }
-
-    /* skill bar */
-    .skill-track { background: rgba(255,255,255,0.06); height:10px; border-radius:999px; overflow:hidden; }
-    .skill-fill { height:100%; border-radius:999px; transform-origin:left; transform:scaleX(0); }
-
+    .hero-sub{ color:var(--muted); max-width:65ch; margin:1rem auto; line-height:1.6; }
+    .chips{ display:flex; flex-wrap:wrap; justify-content:center; gap:.75rem; margin-top:1.5rem; }
+    .chip{ padding:.5rem 1rem; border-radius:999px; font-weight:600; font-size:.85rem; box-shadow:0 4px 12px rgba(0,0,0,0.25); }
     .btn-cv{
-      background: linear-gradient(90deg, rgba(124,58,237,1), rgba(6,182,212,1));
-      padding: .7rem 1.1rem;
-      border-radius: .75rem;
-      font-weight: 700;
-      box-shadow: 0 8px 30px rgba(6,182,212,0.08), inset 0 -6px 18px rgba(0,0,0,0.18);
-      transition: transform .18s ease, box-shadow .18s ease;
+      display:inline-flex; align-items:center; gap:.7rem;
+      padding:.75rem 1.2rem; border-radius:1rem; font-weight:700;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      box-shadow:0 12px 36px rgba(0,0,0,0.5);
+      transition:transform 0.2s;
     }
-    .btn-cv:hover{ transform: translateY(-4px) scale(1.02); box-shadow: 0 18px 50px rgba(6,182,212,0.16); }
+    .btn-cv:hover{ transform:scale(1.05); }
 
+    /* Timeline */
+    .timeline-wrap{ position:relative; }
+    .timeline-line{ position:absolute; left:50%; transform:translateX(-50%); width:6px; background:linear-gradient(180deg,#f472b6,#7c3aed); border-radius:999px; top:0; bottom:0; opacity:0.9; }
+    .timeline-item{ display:grid; grid-template-columns:1fr minmax(80px,160px) 1fr; gap:1rem; align-items:start; margin:3rem 0; }
+    .timeline-card{ background:rgba(8,12,18,0.75); border-radius:1rem; padding:1.25rem; box-shadow:0 8px 36px rgba(0,0,0,0.4); transition:transform 0.15s; }
+    .timeline-card:hover{ transform:translateY(-5px); }
+    .timeline-bullet{ width:60px; height:60px; border-radius:999px; display:flex; align-items:center; justify-content:center; font-weight:800; color:white; box-shadow:0 10px 30px rgba(0,0,0,0.5); }
 
-    .timeline-card {
-  background: rgba(8, 12, 18, 0.6);
-  border-radius: 12px;
-  padding: 1rem;
-  max-width: 520px;
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  transition: transform 0.15s ease, background 0.15s ease;
-}
+    /* Skills */
+    .skill-track{ background: rgba(255,255,255,0.05); height:12px; border-radius:999px; overflow:hidden; }
+    .skill-fill{ height:100%; transform-origin:left; transform:scaleX(0); transition:transform 1s cubic-bezier(.2,.9,.3,1); }
 
-.timeline-card:hover {
-  transform: translateY(-6px);
-  background: rgba(10, 14, 20, 0.75);
-}
-
-.timeline-bullet {
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 700;
-  box-shadow: 0 6px 20px rgba(76, 29, 149, 0.28);
-}
-
-    .collapse { max-height:0; overflow:hidden; transition: max-height 300ms ease, padding 200ms ease; }
-    .collapse.open { padding-top:.65rem; max-height:500px; }
-
-    .toggle-btn { background:transparent; border:1px solid rgba(255,255,255,.05); color:#dbeafe; padding:.32rem .6rem; border-radius:8px; font-size:.86rem; }
-    .toggle-btn:hover { background: rgba(124,58,237,0.06); }
-
-    @media (max-width: 768px) { .blob { display:none; } }
-
-    /* small helpers */
-    .muted { color:var(--muted); font-size:.95rem; }
+    footer.site-footer{
+      margin-top:auto;
+      padding:1.5rem 0;
+      border-top:1px solid rgba(255,255,255,0.06);
+      text-align:center;
+    }
   </style>
 </head>
 <body>
-
-  <!-- decorative blob + particles -->
-  <div class="blob" aria-hidden="true"></div>
-  <div class="particle" style="width:18px;height:18px;left:8%;top:12%;animation-duration:9s"></div>
-  <div class="particle" style="width:10px;height:10px;left:24%;top:72%;animation-duration:12s"></div>
-  <div class="particle" style="width:14px;height:14px;left:78%;top:30%;animation-duration:11s"></div>
-  <div class="particle" style="width:22px;height:22px;left:88%;top:78%;animation-duration:14s"></div>
-
-<!-- HEADER (exact DOM/classes preserved) -->
-<header nav class="navbar flex-container p-2 sm:p-3 md:p-4 lg:p-6 bg-gray-900">
-  <nav class="nav flex-item text-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4" aria-label="Main navigation">
-    <a href="index.html">
-      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-        Home
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
-      </button>
-    </a>
-    <a href="Project1.html">
-      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-        Projects
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
-      </button>
-    </a>
-    <a href="About.html">
-      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-        About
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
-      </button>
-    </a>
-    <a href="ContactME.html">
-      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-        Contact Me
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
-      </button>
-    </a>
-    <a class="self-left" target="_blank" href="https://github.com/callumeppz" rel="noopener noreferrer">
-      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-        GitHub
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
-      </button>
-    </a>
-  </nav>
+<!-- Header -->
+<header class="site-header max-w-6xl mx-auto px-6 py-6 w-full">
+  <div class="flex items-center justify-between">
+    <div class="brand neon text-2xl font-extrabold tracking-wide">Callum Apps</div>
+    <nav class="nav-links flex gap-6 text-sm sm:text-base md:text-base lg:text-base" aria-label="Main navigation">
+      <a href="index.html" class="hover:text-purple-400 transition-colors duration-200">Home</a>
+      <a href="Project1.html" class="hover:text-purple-400 transition-colors duration-200">Projects</a>
+      <a href="about.html" class="hover:text-purple-400 transition-colors duration-200">About</a>
+      <a href="ContactME.html" class="hover:text-purple-400 transition-colors duration-200">Contact</a>
+      <a href="https://github.com/callumeppz" target="_blank" rel="noopener noreferrer" class="hover:text-purple-400 transition-colors duration-200">GitHub</a>
+    </nav>
+  </div>
 </header>
 
-<style>
-/* Animated underline effect */
-.tablinks:hover span,
-.tablinks:focus span {
-  width: 100%;
-}
 
-.tablinks {
-  /* subtle 3D shadow on hover */
-  box-shadow: 0 0 0 rgba(0,0,0,0);
-}
+  <!-- Main content -->
+  <main class="relative z-10 w-full px-6 py-8">
+<!-- Hero (blob + content) -->
+<section class="relative mb-16 py-12" aria-labelledby="hero-title">
+  <!-- decorative visuals (purely decorative) -->
+  <div class="hero-blob" aria-hidden="true">
+    <div class="blob"></div>
 
-.tablinks:hover {
-  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
-}
-</style>
+    <!-- lightweight particles (decorative) -->
+    <div class="particle" style="width:18px;height:18px;left:6%;top:8%;background:linear-gradient(135deg,var(--accent1),var(--accent2));"></div>
+    <div class="particle" style="width:12px;height:12px;left:22%;top:72%;background:linear-gradient(135deg,var(--accent2),var(--accent1));"></div>
+    <div class="particle" style="width:14px;height:14px;left:78%;top:36%;background:linear-gradient(135deg,var(--accent1),var(--accent2));"></div>
+  </div>
 
+  <!-- content -->
+  <article class="hero-card glass mx-auto max-w-4xl text-center px-8 py-10 md:px-12 md:py-14 rounded-2xl shadow-lg" role="region" aria-labelledby="hero-title">
+    <h1 id="hero-title" class="neon text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
+      Callum Apps — Embedded Software Engineer
+    </h1>
 
-  <!-- HERO (from page 2) -->
-  <main class="relative z-20">
-    <div id="orb" class="slider-thumb idle" aria-hidden="true" style="position:absolute; left:50%; top:28%; width:160px; height:160px; margin-left:-80px; margin-top:-80px; border-radius:50%; background: radial-gradient(circle at 35% 30%, rgba(124,58,237,0.95), rgba(76,29,149,0.85) 60%, rgba(76,29,149,0.45) 100%); filter: blur(6px); mix-blend-mode:screen; z-index:0;"></div>
+    <p class="hero-sub mt-5 text-sm sm:text-base muted max-w-2xl mx-auto">
+      I design and ship reliable low-level firmware and FPGA systems — register-level bring-up, device drivers, and UML system design.
+      Experienced in Python, Java, embedded tooling and machine learning. First-class BSc (Hons) in Computer Science.
+    </p>
 
-    <section class="max-w-5xl mx-auto px-6 py-20 relative z-10">
-      <div class="text-center glass p-8 tilt" id="heroCard" style="box-shadow: 0 10px 40px rgba(2,6,23,0.6);">
-        <h class="neon text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4">Callum Apps — Embedded Software Engineer</h>
-        <p> ----</p>
-        <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">Low-level C, FPGA peripherals, register-level bring-up and UML system design. Experienced in Python, Java, shell scripting, and web development.</p>
+    <!-- chips -->
+    <div class="chips mt-7 flex flex-wrap justify-center gap-3" role="list" aria-label="Key skills">
+      <span role="listitem" class="chip px-4 py-2 rounded-full text-sm font-semibold shadow-sm bg-gradient-to-r from-purple-600 to-indigo-600">C (embedded)</span>
+      <span role="listitem" class="chip px-4 py-2 rounded-full text-sm font-semibold shadow-sm bg-gradient-to-r from-pink-500 to-red-500">FPGA</span>
+      <span role="listitem" class="chip px-4 py-2 rounded-full text-sm font-semibold shadow-sm bg-gradient-to-r from-green-500 to-teal-500">SysML &amp; UML</span>
+      <span role="listitem" class="chip px-4 py-2 rounded-full text-sm font-semibold shadow-sm bg-gradient-to-r from-yellow-400 to-orange-500">CAN / UART / SPI</span>
+      <span role="listitem" class="chip px-4 py-2 rounded-full text-sm font-semibold shadow-sm bg-gradient-to-r from-blue-500 to-indigo-500">Agile / JIRA</span>
+      <span role="listitem" class="chip px-4 py-2 rounded-full text-sm font-semibold shadow-sm bg-gray-700">Data &amp; Excel</span>
+    </div>
 
-      <!-- Chips / Skills -->
-      <div class="mt-4 flex flex-wrap gap-2 justify-center">
-        <span class="chip px-3 py-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full text-xs font-semibold shadow-md">C (embedded)</span>
-        <span class="chip px-3 py-1 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-full text-xs font-semibold shadow-md">FPGA</span>
-        <span class="chip px-3 py-1 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-full text-xs font-semibold shadow-md">SysML & UML</span>
-        <span class="chip px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-full text-xs font-semibold shadow-md">CAN / UART / SPI</span>
-        <span class="chip px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-full text-xs font-semibold shadow-md">Agile / JIRA</span>
-        <span class="chip px-3 py-1 bg-gradient-to-r from-gray-500 to-gray-700 text-white rounded-full text-xs font-semibold shadow-md">Data & Excel</span>
-      </div>
+    <!-- CTA group -->
+    <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4 items-center">
+      <a class="btn-cv inline-flex items-center gap-3 text-sm" href="dist/Callum-Apps-CV.pdf" download aria-label="Download Callum Apps CV">
+        <!-- icon kept minimal -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+        <span>Download CV</span>
+      </a>
 
-        <div class="mt-8 flex justify-center gap-4">
-          <a href="dist/Callum-Apps-CV.pdf" download class="btn-cv text-sm text-white inline-flex items-center gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10l5 5 5-5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Download CV
-          </a>
+      <a class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 text-sm hover:bg-white/5 transition-colors" href="mailto:callum.apps@icloud.com" aria-label="Contact Callum">
+        Contact
+      </a>
+    </div>
+
+    <!-- optional microcopy -->
+  </article>
+</section>
+
+<!-- Timeline & sidebar (stacked on smaller viewports) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+
+  <!-- Timeline column -->
+  <div class="md:col-span-2">
+    <div class="glass p-6 rounded-2xl">
+      <div class="timeline-wrap relative">
+        <!-- Vertical timeline line -->
+        <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-pink-500 to-purple-700 rounded-full top-0 bottom-0 opacity-80"></div>
+
+        <!-- Timeline Item 1 -->
+        <div class="timeline-item grid grid-cols-1 md:grid-cols-3 gap-4 items-start my-8">
+          <div></div>
+          <div class="flex justify-center">
+            <div class="timeline-bullet bg-gradient-to-b from-purple-600 to-teal-400">G</div>
+          </div>
+          <div>
+            <div class="timeline-card p-4 rounded-xl glass">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-lg font-semibold">Graduate Software Engineer</p>
+                  <p class="muted text-sm">BAE Systems — Rochester, Kent, UK</p>
+                  <p class="muted text-xs">Sept 2024 – Present • SC Cleared</p>
+                </div>
+                <button class="toggle-btn text-sm font-semibold" data-target="c1" aria-controls="c1" aria-expanded="false">Details</button>
+              </div>
+              <div id="c1" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
+                <ul class="list-disc list-inside">
+                  <li>Embedded DO-178C Level C/D firmware on ARM Cortex MCUs.</li>
+                  <li>Low-level C drivers and FPGA CSU development.</li>
+                  <li>SysML architecture & documentation; CI/CD integration.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline Item 2 -->
+        <div class="timeline-item grid grid-cols-1 md:grid-cols-3 gap-4 items-start my-8">
+          <div>
+            <div class="timeline-card p-4 rounded-xl glass">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-lg font-semibold">IT Support Analyst</p>
+                  <p class="muted text-sm">University of Reading — Reading, UK</p>
+                  <p class="muted text-xs">Sept 2023 – July 2024</p>
+                </div>
+                <button class="toggle-btn text-sm font-semibold" data-target="c2" aria-controls="c2" aria-expanded="false">Details</button>
+              </div>
+              <div id="c2" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
+                <ul class="list-disc list-inside">
+                  <li>Authentication, account management and network support.</li>
+                  <li>Shell scripting, PowerShell and Linux diagnostics.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <div class="timeline-bullet bg-gradient-to-b from-pink-400 to-indigo-500">IT</div>
+          </div>
+          <div></div>
+        </div>
+
+        <!-- Timeline Item 3 -->
+        <div class="timeline-item grid grid-cols-1 md:grid-cols-3 gap-4 items-start my-8">
+          <div></div>
+          <div class="flex justify-center">
+            <div class="timeline-bullet bg-gradient-to-b from-purple-600 to-pink-400">QA</div>
+          </div>
+          <div>
+            <div class="timeline-card p-4 rounded-xl glass">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-lg font-semibold">Games Functionality Tester</p>
+                  <p class="muted text-sm">Microsoft/Huntress</p>
+                  <p class="muted text-xs">Sept 2022 – Oct 2023</p>
+                </div>
+                <button class="toggle-btn text-sm font-semibold" data-target="c3" aria-controls="c3" aria-expanded="false">Details</button>
+              </div>
+              <div id="c3" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
+                <ul class="list-disc list-inside">
+                  <li>Executed structured test cases and defect reproduction.</li>
+                  <li>Improved QA traceability using Excel and tracking tools.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline Item 4 -->
+        <div class="timeline-item grid grid-cols-1 md:grid-cols-3 gap-4 items-start my-8">
+          <div>
+            <div class="timeline-card p-4 rounded-xl glass">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-lg font-semibold">BSc Computer Science — First-Class Honours</p>
+                  <p class="muted text-sm">University of Reading</p>
+                  <p class="muted text-xs">Sept 2021 – July 2024</p>
+                </div>
+                <button class="toggle-btn text-sm font-semibold" data-target="c4" aria-controls="c4" aria-expanded="false">Details</button>
+              </div>
+              <div id="c4" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
+                <p><strong>Key modules:</strong> Algorithms, OS, Compilers, Computer Architecture, Networking, Databases, AI, Data Science, NLP.</p>
+                <p><strong>Dissertation:</strong> Multiplayer networked game (Java & C).</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <div class="timeline-bullet bg-gradient-to-r from-purple-600 to-teal-400">ED</div>
+          </div>
+          <div></div>
         </div>
 
       </div>
-      
+    </div>
+  </div>
+
+</section>
+
+
+      <!-- Sidebar / skills -->
+      <aside class="md:col-span-1 space-y-6">
+        <div class="glass p-6 rounded-2xl">
+          <h3 class="text-lg font-semibold neon">Skills & Tools</h3>
+          <p class="muted text-sm mt-2">Tools and proficiencies I reach for when solving embedded systems problems.</p>
+
+          <div class="mt-4 space-y-4">
+            <div>
+              <div class="flex justify-between text-sm muted mb-2"><div>Low-level Embedded C</div><div>90%</div></div>
+              <div class="skill-track"><div class="skill-fill" data-fill="0.9" style="background:linear-gradient(90deg,var(--accent1),var(--accent2));"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm muted mb-2"><div>Systems & Architecture</div><div>82%</div></div>
+              <div class="skill-track"><div class="skill-fill" data-fill="0.82" style="background:linear-gradient(90deg,#f97316,#fb7185);"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm muted mb-2"><div>Web & Tooling</div><div>76%</div></div>
+              <div class="skill-track"><div class="skill-fill" data-fill="0.76" style="background:linear-gradient(90deg,#06b6d4,#3b82f6);"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm muted mb-2"><div>Testing & QA</div><div>74%</div></div>
+              <div class="skill-track"><div class="skill-fill" data-fill="0.74" style="background:linear-gradient(90deg,#10b981,#84cc16);"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass p-6 rounded-2xl">
+          <h4 class="text-sm font-semibold">Contact</h4>
+          <a class="mt-3 inline-block text-sm underline" href="mailto:callum.apps@icloud.com">callum.apps@icloud.com</a>
+        </div>
+      </aside>
+
     </section>
-    </main>
-<!-- TIMELINE -->
-<section class="max-w-6xl mx-auto px-6 py-12 relative z-10">
-  <div class="text-center glass p-6 md:p-8 tilt" id="heroCard" style="box-shadow: 0 10px 40px rgba(2,6,23,0.6);">
-    <div class="timeline-wrap relative">
-      <!-- Vertical timeline line behind everything -->
-      <div class="timeline-line absolute left-1/2 top-0 h-full w-1 bg-pink-500 rounded-full -translate-x-1/2 z-0"></div>
 
-      <!-- 1. Graduate Software Engineer (Right on desktop) -->
-      <div class="timeline-item grid grid-cols-12 items-start gap-4 mb-12">
-        <div class="col-span-12 md:col-span-5 md:flex md:justify-end">
-          <!-- empty left side on desktop -->
-        </div>
+  </main>
 
-        <!-- Center bullet -->
-        <div class="col-span-12 md:col-span-2 flex justify-center relative z-10">
-          <div class="timeline-bullet bg-accent2 z-10">G</div>
-        </div>
-
-        <!-- Right card -->
-        <div class="col-span-12 md:col-span-5 flex justify-center md:justify-start z-10">
-          <div class="timeline-card w-full max-w-sm md:max-w-sm">
-            <div class="card-header flex flex-col md:flex-row items-start justify-between">
-              <div>
-                <p class="job-title text-lg md:text-xl">Graduate Software Engineer</p>
-                <p class="company text-sm md:text-base">BAE Systems Inc., Rochester, Kent, UK</p>
-                <p class="job-meta text-xs md:text-sm">Sept 2024 – Present • SC Cleared</p>
-              </div>
-              <button class="toggle-btn mt-2 md:mt-0 ml-0 md:ml-4" data-target="c1" aria-controls="c1" aria-expanded="false">Details</button>
-            </div>
-            <div id="c1" class="collapse mt-3 text-gray-300 text-sm md:text-base" aria-hidden="true">
-              <ul class="list-disc list-inside">
-                <li>Developed DO-178C Level C/D embedded firmware on ARM Cortex MCUs.</li>
-                <li>Engineered low-level C drivers & CSU for FPGA-based systems.</li>
-                <li>Produced SysML architecture & design documentation.</li>
-                <li>Integrated firmware via CI/CD (Jenkins, Bitbucket). JIRA & Git.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. IT Support Analyst (Left on desktop) -->
-      <div class="timeline-item grid grid-cols-12 items-start gap-4 mb-12">
-        <!-- Left card -->
-        <div class="col-span-12 md:col-span-5 flex justify-center md:justify-end z-10">
-          <div class="timeline-card w-full max-w-sm md:max-w-sm">
-            <div class="card-header flex flex-col md:flex-row items-start justify-between">
-              <div>
-                <p class="job-title text-lg md:text-xl">IT Support Analyst</p>
-                <p class="company text-sm md:text-base">University of Reading — Reading, UK</p>
-                <p class="job-meta text-xs md:text-sm">Sept 2023 – July 2024 (concurrent with degree)</p>
-              </div>
-              <button class="toggle-btn mt-2 md:mt-0 ml-0 md:ml-4" data-target="c2" aria-controls="c2" aria-expanded="false">Details</button>
-            </div>
-            <div id="c2" class="collapse mt-3 text-gray-300 text-sm md:text-base" aria-hidden="true">
-              <ul class="list-disc list-inside">
-                <li>Supported authentication, account management, network access & OS faults (Windows & Linux).</li>
-                <li>OS-level troubleshooting incl. SSH, PowerShell scripting, Linux diagnostics.</li>
-                <li>Produced documentation and improved ticket response workflows.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Center bullet -->
-        <div class="col-span-12 md:col-span-2 flex justify-center relative z-10">
-          <div class="timeline-bullet bg-gradient-to-b from-accent1 to-accent2 z-10">IT</div>
-        </div>
-
-        <div class="col-span-12 md:col-span-5 flex justify-center md:justify-start">
-          <!-- empty right side -->
-        </div>
-      </div>
-
-      <!-- 3. Games Functionality Tester (Right on desktop) -->
-      <div class="timeline-item grid grid-cols-12 items-start gap-4 mb-12">
-        <div class="col-span-12 md:col-span-5 flex justify-center md:justify-end">
-          <!-- empty left -->
-        </div>
-
-        <div class="col-span-12 md:col-span-2 flex justify-center relative z-10">
-          <div class="timeline-bullet bg-accent1 z-10">QA</div>
-        </div>
-
-        <div class="col-span-12 md:col-span-5 flex justify-center md:justify-start z-10">
-          <div class="timeline-card w-full max-w-sm md:max-w-sm">
-            <div class="card-header flex flex-col md:flex-row items-start justify-between">
-              <div>
-                <p class="job-title text-lg md:text-xl">Games Functionality Tester</p>
-                <p class="company text-sm md:text-base">Microsoft/Huntress</p>
-                <p class="job-meta text-xs md:text-sm">Sept 2022 – Oct 2023 (concurrent with degree)</p>
-              </div>
-              <button class="toggle-btn mt-2 md:mt-0 ml-0 md:ml-4" data-target="c3" aria-controls="c3" aria-expanded="false">Details</button>
-            </div>
-            <div id="c3" class="collapse mt-3 text-gray-300 text-sm md:text-base" aria-hidden="true">
-              <ul class="list-disc list-inside">
-                <li>Executed structured test cases and reproduced defects; detailed bug reporting.</li>
-                <li>Tracked testing with Excel to improve QA process and traceability.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4. Education (Left on desktop) -->
-      <div class="timeline-item grid grid-cols-12 items-start gap-4 mb-12">
-        <div class="col-span-12 md:col-span-5 flex justify-center md:justify-end z-10">
-          <div class="timeline-card w-full max-w-sm md:max-w-sm">
-            <div class="card-header flex flex-col md:flex-row items-start justify-between">
-              <div>
-                <p class="job-title text-lg md:text-xl">BSc Computer Science — First-Class Honours</p>
-                <p class="company text-sm md:text-base">University of Reading</p>
-                <p class="job-meta text-xs md:text-sm">Sept 2021 – July 2024</p>
-              </div>
-              <button class="toggle-btn mt-2 md:mt-0 ml-0 md:ml-4" data-target="c4" aria-controls="c4" aria-expanded="false">Details</button>
-            </div>
-            <div id="c4" class="collapse mt-3 text-gray-300 text-sm md:text-base" aria-hidden="true">
-              <p class="mb-2"><strong>Key modules:</strong> Algorithms & OS, Compilers, Computer Architecture & Networking, Databases & Info Security, Distributed Systems, AI, Data Science, Text Mining & NLP.</p>
-              <p class="mb-2"><strong>Dissertation:</strong> Multiplayer networked game (Java & C) — real-time cross-device gameplay.</p>
-              <p><strong>Averages:</strong> Theory 78% / Programming 80%</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-span-12 md:col-span-2 flex justify-center relative z-10">
-          <div class="timeline-bullet bg-gradient-to-r from-accent1 to-accent2 z-10">ED</div>
-        </div>
-
-        <div class="col-span-12 md:col-span-5 flex justify-center md:justify-start">
-          <!-- empty right -->
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  
-<section class="max-w-7xl mx-auto px-6 py-12 relative z-10">
-  <div class="text-center glass p-8 tilt" id="heroCard" style="box-shadow: 0 10px 40px rgba(2,6,23,0.6);">
-  <h3 class="text-2xl font-semibold mb-6">Academic Projects</h3>
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    
-    <!-- Project 1 -->
-    <article class="project-card rounded-lg overflow-hidden bg-gray-900 hover:shadow-lg transition-shadow focus-within:ring-2 focus-within:ring-purple-500" tabindex="0">
-      <img class="project-img w-full h-48 object-cover" src="droneimg.png" alt="Drone simulator screenshot" loading="lazy">
-      <div class="p-4">
-        <h4 class="font-semibold text-white mb-1">Drone Simulator</h4>
-        <p class="text-sm text-gray-300 mb-3">Java coursework simulating randomized drone motion &amp; collisions.</p>
-        <a href="Project1.html" class="inline-block px-3 py-2 rounded bg-purple-600 hover:bg-purple-500 text-sm text-white transition-colors">View Project</a>
-      </div>
-    </article>
-
-    <!-- Project 2 -->
-    <article class="project-card rounded-lg overflow-hidden bg-gray-900 hover:shadow-lg transition-shadow focus-within:ring-2 focus-within:ring-purple-500" tabindex="0">
-      <img class="project-img w-full h-48 object-cover" src="mazegame.png" alt="Maze generator screenshot" loading="lazy">
-      <div class="p-4">
-        <h4 class="font-semibold text-white mb-1">Random Maze Generator</h4>
-        <p class="text-sm text-gray-300 mb-3">Algorithmic maze generation with guaranteed solvable exits.</p>
-        <a href="Project2.html" class="inline-block px-3 py-2 rounded bg-purple-600 hover:bg-purple-500 text-sm text-white transition-colors">View Project</a>
-      </div>
-    </article>
-
-    <!-- Project 3 -->
-    <article class="project-card rounded-lg overflow-hidden bg-gray-900 hover:shadow-lg transition-shadow focus-within:ring-2 focus-within:ring-purple-500" tabindex="0">
-      <img class="project-img w-full h-48 object-cover" src="DissProj.png" alt="Networked Unity project screenshot" loading="lazy">
-      <div class="p-4">
-        <h4 class="font-semibold text-white mb-1">Networked Unity Application</h4>
-        <p class="text-sm text-gray-300 mb-3">Dissertation: multiplayer networking with Unity + Photon.</p>
-        <a href="Project3.html" class="inline-block px-3 py-2 rounded bg-purple-600 hover:bg-purple-500 text-sm text-white transition-colors">View Project</a>
-      </div>
-    </article>
-
-    <!-- Project 4 -->
-    <article class="project-card rounded-lg overflow-hidden bg-gray-900 hover:shadow-lg transition-shadow focus-within:ring-2 focus-within:ring-purple-500" tabindex="0">
-      <img class="project-img w-full h-48 object-cover" src="Webdev.png" alt="Web portfolio screenshot" loading="lazy">
-      <div class="p-4">
-        <h4 class="font-semibold text-white mb-1">Website Development</h4>
-        <p class="text-sm text-gray-300 mb-3">Portfolio built with HTML, CSS, JS &amp; Tailwind.</p>
-        <a href="Project4.html" class="inline-block px-3 py-2 rounded bg-purple-600 hover:bg-purple-500 text-sm text-white transition-colors">View Project</a>
-      </div>
-    </article>
-
-  </div>
-  </div>
-</section>
-<!-- Quick contact / CV & Skills -->
-<section class="max-w-5xl mx-auto px-6 pb-12 relative z-10 space-y-8">
-  <div class="bg-gray-800 p-6 rounded-lg glass flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-    <div>
-      <p class="font-semibold">Callum Apps</p>
-      <p class="muted mb-1">+44 7735 013801 • Callum.apps@Icloud.com</p>
-      <a href="https://www.linkedin.com/in/callum-apps/" target="_blank" rel="noopener noreferrer" class="muted underline">LinkedIn</a>
-    </div>
-    <div class="flex gap-3">
-      <a href="dist/Callum-Apps-CV.pdf" download class="px-4 py-2 bg-purple-600 rounded-md hover:bg-purple-500">Download CV</a>
-      <a href="https://github.com/callumeppz" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-gray-700 rounded-md hover:bg-gray-600">GitHub</a>
-    </div>
-  </div>
-
-  <!-- Skills & Tools Card -->
-  <div class="w-full max-w-lg mx-auto">
-    <div class="glass p-6 rounded-2xl tilt">
-      <h3 class="text-lg font-semibold neon mb-2">Skills & Tools</h3>
-      <p class="text-xs text-gray-300 mb-4">A few tools I reach for when solving problems.</p>
-
-      <div class="space-y-4">
-        <!-- Low-level Embedded C -->
-        <div>
-          <div class="flex justify-between text-xs text-gray-300 mb-1">
-            <div>Low-level Embedded C</div><div>90%</div>
-          </div>
-          <div class="skill-track h-1.5 rounded bg-gray-700">
-            <div class="skill-fill rounded h-1.5" data-fill="0.9" style="background:linear-gradient(90deg,var(--accent1),var(--accent2));"></div>
-          </div>
-        </div>
-
-        <!-- Systems & Architecture -->
-        <div>
-          <div class="flex justify-between text-xs text-gray-300 mb-1">
-            <div>Systems & Architecture</div><div>82%</div>
-          </div>
-          <div class="skill-track h-1.5 rounded bg-gray-700">
-            <div class="skill-fill rounded h-1.5" data-fill="0.82" style="background:linear-gradient(90deg,#f97316,#fb7185);"></div>
-          </div>
-        </div>
-
-        <!-- Web & Tooling -->
-        <div>
-          <div class="flex justify-between text-xs text-gray-300 mb-1">
-            <div>Web & Tooling</div><div>76%</div>
-          </div>
-          <div class="skill-track h-1.5 rounded bg-gray-700">
-            <div class="skill-fill rounded h-1.5" data-fill="0.76" style="background:linear-gradient(90deg,#06b6d4,#3b82f6);"></div>
-          </div>
-        </div>
-
-        <!-- Testing & QA -->
-        <div>
-          <div class="flex justify-between text-xs text-gray-300 mb-1">
-            <div>Testing & QA</div><div>74%</div>
-          </div>
-          <div class="skill-track h-1.5 rounded bg-gray-700">
-            <div class="skill-fill rounded h-1.5" data-fill="0.74" style="background:linear-gradient(90deg,#10b981,#84cc16);"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-  <!-- FOOTER (from page 1 style) -->
-  <footer class="relative z-20 border-t border-white border-opacity-6">
-    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between text-sm text-gray-400">
+  <!-- Footer -->
+  <footer class="site-footer w-full">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between muted">
       <div>© <strong>Callum Apps</strong></div>
-      <div class="mt-3 md:mt-0">Created 2023 • <a target="_blank" href="https://github.com/callumeppz" class="text-white underline">GitHub</a></div>
+      <div class="mt-3 md:mt-0">Created 2023 • <a href="https://github.com/callumeppz" class="underline">GitHub</a></div>
     </div>
   </footer>
 
-  <!-- JS: orb + accordion + tilt + skill animations + small accessibility enhancements -->
+  <!-- Scripts: interactions (accordion, tilt, orb, skill animations) -->
   <script>
-    // Parallax orb (idle float + pointer follow)
+    // --- Parallax orb: subtle pointer-follow for hero only ---
     (function(){
-      const orb = document.getElementById('orb');
-      if (!orb) return;
-      let idleTimeout;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { orb.classList.add('idle'); return; }
-      orb.classList.add('idle');
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return; // keep it simple for assistive users
 
-      function onMove(e) {
-        orb.classList.remove('idle'); clearTimeout(idleTimeout);
-        const cx = window.innerWidth / 2; const cy = window.innerHeight / 3;
+      // create a small orb element in JS so markup stays clean
+      const blob = document.querySelector('.hero-blob .blob');
+      if (!blob) return;
+      let idle = true, timeoutId;
+
+      function moveOrb(e){
+        clearTimeout(timeoutId);
+        idle = false;
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 3;
         const clientX = (e.clientX !== undefined) ? e.clientX : (e.touches && e.touches[0] && e.touches[0].clientX) || cx;
         const clientY = (e.clientY !== undefined) ? e.clientY : (e.touches && e.touches[0] && e.touches[0].clientY) || cy;
-        const dx = (clientX - cx) / cx; const dy = (clientY - cy) / cy;
-        const tx = Math.max(-36, Math.min(36, dx * 36));
-        const ty = Math.max(-26, Math.min(26, dy * 26));
-        orb.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
-        idleTimeout = setTimeout(()=> orb.classList.add('idle'), 900);
+        const dx = (clientX - cx) / cx;
+        const dy = (clientY - cy) / cy;
+        const tx = Math.max(-40, Math.min(40, dx * 40));
+        const ty = Math.max(-24, Math.min(24, dy * 24));
+        blob.style.transform = `translate3d(${tx}px, ${ty - 24}px, 0) rotate(${tx/10}deg)`;
+        timeoutId = setTimeout(()=>{ idle = true; blob.style.transform = ''; }, 900);
       }
 
-      window.addEventListener('pointermove', onMove, {passive:true});
-      window.addEventListener('touchmove', onMove, {passive:true});
+      window.addEventListener('pointermove', moveOrb, {passive:true});
+      window.addEventListener('touchmove', moveOrb, {passive:true});
     })();
 
-    // Accordion w/ auto-close (from page 2)
+    // --- Accordion: single-open panels ---
     (function(){
       const buttons = Array.from(document.querySelectorAll('.toggle-btn'));
-      function closeAll() {
-        document.querySelectorAll('.collapse.open').forEach(panel => {
+      function closeAll(){
+        document.querySelectorAll('.collapse.open').forEach(panel=>{
           panel.style.maxHeight = panel.scrollHeight + 'px';
-          requestAnimationFrame(() => {
-            panel.style.maxHeight = '0px';
-            panel.classList.remove('open');
-            panel.setAttribute('aria-hidden','true');
+          requestAnimationFrame(()=>{
+            panel.style.maxHeight = '0px'; panel.classList.remove('open'); panel.setAttribute('aria-hidden','true');
           });
         });
-        buttons.forEach(b => b.setAttribute('aria-expanded','false'));
+        buttons.forEach(b=>b.setAttribute('aria-expanded','false'));
       }
 
-      buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const target = document.getElementById(btn.getAttribute('data-target'));
-          if (!target) return;
+      buttons.forEach(btn=>{
+        const target = document.getElementById(btn.getAttribute('data-target'));
+        if (!target) return;
+        target.style.maxHeight = '0px'; target.classList.remove('open'); target.setAttribute('aria-hidden','true');
+
+        btn.addEventListener('click', ()=>{
           const isOpen = target.classList.contains('open');
-          if (isOpen) {
+          if (isOpen){
             target.style.maxHeight = target.scrollHeight + 'px';
-            requestAnimationFrame(() => {
-              target.style.maxHeight = '0px';
-              target.classList.remove('open');
-              target.setAttribute('aria-hidden','true');
-              btn.setAttribute('aria-expanded','false');
-            });
+            requestAnimationFrame(()=>{ target.style.maxHeight = '0px'; target.classList.remove('open'); target.setAttribute('aria-hidden','true'); btn.setAttribute('aria-expanded','false'); });
           } else {
             closeAll();
-            target.classList.add('open');
-            target.setAttribute('aria-hidden','false');
-            btn.setAttribute('aria-expanded','true');
+            target.classList.add('open'); target.setAttribute('aria-hidden','false'); btn.setAttribute('aria-expanded','true');
             target.style.maxHeight = target.scrollHeight + 'px';
-            target.addEventListener('transitionend', function te(){
-              if (target.classList.contains('open')) target.style.maxHeight = 'none';
-              target.removeEventListener('transitionend', te);
-            });
+            target.addEventListener('transitionend', function onend(){ if (target.classList.contains('open')) target.style.maxHeight = 'none'; target.removeEventListener('transitionend', onend); });
           }
         });
       });
 
-      // Initialize closed
-      document.querySelectorAll('.collapse').forEach(c => { c.style.maxHeight = '0px'; c.classList.remove('open'); c.setAttribute('aria-hidden','true'); });
     })();
 
-    // tilt interaction for elements with class 'tilt' (from page 1)
+    // --- Tilt effect for cards (subtle) ---
     (function(){
-      const tiltable = document.querySelectorAll('.tilt');
-      tiltable.forEach(el=>{
-        el.addEventListener('mousemove', (e)=>{
+      const tiltEls = document.querySelectorAll('.timeline-card, .hero-card');
+      if (!tiltEls.length) return;
+      tiltEls.forEach(el=>{
+        let active = false;
+        el.addEventListener('mousemove', e=>{
           const rect = el.getBoundingClientRect();
           const x = (e.clientX - rect.left) / rect.width;
           const y = (e.clientY - rect.top) / rect.height;
-          const rotY = (x - 0.5) * 10;
-          const rotX = (0.5 - y) * 8;
-          el.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(6px)`;
-          el.style.boxShadow = `0 20px 50px rgba(2,6,23,0.6)`;
+          const rotY = (x - 0.5) * 6; const rotX = (0.5 - y) * 6;
+          el.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+          el.style.transition = 'transform 120ms linear';
+          active = true;
         });
-        el.addEventListener('mouseleave', ()=>{
-          el.style.transform = '';
-          el.style.boxShadow = '';
-        });
+        el.addEventListener('mouseleave', ()=>{ if(!active) return; el.style.transform = ''; el.style.transition = ''; active=false; });
       });
     })();
 
-    // animate skill bars on viewport enter (from page 1)
+    // --- Skill bar animation when visible ---
     (function(){
       const fills = document.querySelectorAll('.skill-fill');
-      const animateFills = () => {
-        fills.forEach(f=>{
-          const val = parseFloat(f.getAttribute('data-fill')) || 0;
-          f.style.transform = `scaleX(${val})`;
-          f.style.transition = 'transform 1000ms cubic-bezier(.2,.9,.3,1)';
-        });
-      };
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(en => {
-          if (en.isIntersecting) {
-            animateFills();
-            obs.disconnect();
-          }
-        });
-      }, {threshold: 0.25});
-      const main = document.querySelector('main');
-      if (main) observer.observe(main);
+      if (!fills.length) return;
+      function animate(){ fills.forEach(f=>{ const val = parseFloat(f.getAttribute('data-fill'))||0; f.style.transform = `scaleX(${val})`; f.style.transition = 'transform 900ms cubic-bezier(.2,.9,.3,1)'; }); }
+      const observer = new IntersectionObserver((entries, obs)=>{ entries.forEach(en=>{ if (en.isIntersecting){ animate(); obs.disconnect(); } }); }, {threshold:0.2});
+      observer.observe(document.querySelector('main'));
     })();
 
-    // small accessible enhancement: focus states for links
-    document.querySelectorAll('a,button').forEach(el=>el.setAttribute('tabindex','0'));
+    // --- small accessibility: ensure focusable elements are keyboard reachable ---
+    (function(){ document.querySelectorAll('a,button').forEach(el=>{ if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','0'); }); })();
   </script>
 
 </body>

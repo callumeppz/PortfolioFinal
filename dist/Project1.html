@@ -74,63 +74,55 @@
     </header>
 
 
-
-
-  <!-- Hoverable Container -->
-  <div class="hover-container overflow-hidden">
-    <!-- Project Container -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-4">
-      <!-- Your existing project cards here -->
-      <!-- Project Card 1 -->
-      <div class="bg-gray-900 rounded-lg overflow-hidden shadow-md h-full project-card">
-        <img class="w-full object-cover transition-transform transform-gpu duration-300" src="droneimg.png" alt="Randomly Generating Maze" />
-        <div class="p-6 flex flex-col">
-          <p class="font-bold text-xl mb-2">Drone Simulator</p>
-          <p class="text-base">
-            This project was my first Java coursework in year 2 of university, which involved me having to create a system that simulated randomly moving, colliding drones.
-          </p>
-          <a href="Project1.html" class="mt-4 bg-gray-800 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded block">View Project</a>
-        </div>
+    <section class="max-w-7xl mx-auto px-6 py-12 relative z-10">
+      <div class="text-center glass p-8 tilt" id="heroCard" style="box-shadow: 0 10px 40px rgba(2,6,23,0.6);">
+      <h3 class="text-2xl font-semibold mb-6">Academic Projects</h3>
+    
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Project 1 -->
+        <article class="project-card rounded-lg overflow-hidden bg-gray-900 hover:shadow-lg transition-shadow focus-within:ring-2 focus-within:ring-purple-500" tabindex="0">
+          <img class="project-img w-full h-48 object-cover" src="droneimg.png" alt="Drone simulator screenshot" loading="lazy">
+          <div class="p-4">
+            <h4 class="font-semibold text-white mb-1">Drone Simulator</h4>
+            <p class="text-sm text-gray-300 mb-3">Java coursework simulating randomized drone motion &amp; collisions.</p>
+            <a href="Project1.html" class="inline-block px-3 py-2 rounded bg-purple-600 hover:bg-purple-500 text-sm text-white transition-colors">View Project</a>
+          </div>
+        </article>
+    
+        <!-- Project 2 -->
+        <article class="project-card rounded-lg overflow-hidden bg-gray-900 hover:shadow-lg transition-shadow focus-within:ring-2 focus-within:ring-purple-500" tabindex="0">
+          <img class="project-img w-full h-48 object-cover" src="mazegame.png" alt="Maze generator screenshot" loading="lazy">
+          <div class="p-4">
+            <h4 class="font-semibold text-white mb-1">Random Maze Generator</h4>
+            <p class="text-sm text-gray-300 mb-3">Algorithmic maze generation with guaranteed solvable exits.</p>
+            <a href="Project2.html" class="inline-block px-3 py-2 rounded bg-purple-600 hover:bg-purple-500 text-sm text-white transition-colors">View Project</a>
+          </div>
+        </article>
+    
+        <!-- Project 3 -->
+        <article class="project-card rounded-lg overflow-hidden bg-gray-900 hover:shadow-lg transition-shadow focus-within:ring-2 focus-within:ring-purple-500" tabindex="0">
+          <img class="project-img w-full h-48 object-cover" src="DissProj.png" alt="Networked Unity project screenshot" loading="lazy">
+          <div class="p-4">
+            <h4 class="font-semibold text-white mb-1">Networked Unity Application</h4>
+            <p class="text-sm text-gray-300 mb-3">Dissertation: multiplayer networking with Unity + Photon.</p>
+            <a href="Project3.html" class="inline-block px-3 py-2 rounded bg-purple-600 hover:bg-purple-500 text-sm text-white transition-colors">View Project</a>
+          </div>
+        </article>
+    
+        <!-- Project 4 -->
+        <article class="project-card rounded-lg overflow-hidden bg-gray-900 hover:shadow-lg transition-shadow focus-within:ring-2 focus-within:ring-purple-500" tabindex="0">
+          <img class="project-img w-full h-48 object-cover" src="Webdev.png" alt="Web portfolio screenshot" loading="lazy">
+          <div class="p-4">
+            <h4 class="font-semibold text-white mb-1">Website Development</h4>
+            <p class="text-sm text-gray-300 mb-3">Portfolio built with HTML, CSS, JS &amp; Tailwind.</p>
+            <a href="Project4.html" class="inline-block px-3 py-2 rounded bg-purple-600 hover:bg-purple-500 text-sm text-white transition-colors">View Project</a>
+          </div>
+        </article>
+    
       </div>
-
-  <!-- Project Card 2 -->
-  <div class="bg-gray-900 rounded-lg overflow-hidden shadow-md h-full project-card">
-    <img class="w-full object-cover transition-transform transform-gpu duration-300" src="mazegame.png" alt="Randomly Generating Maze" />
-    <div class="p-6 flex flex-col">
-      <p class="font-bold text-xl mb-2">Random Generating Maze</p>
-      <p class="text-base">
-        This involved me creating a randomly generating algorithm that ensured that there was always an exit; this was also my second Java coursework.
-      </p>
-      <a href="Project2.html" class="mt-4 bg-gray-800 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded block">View Project</a>
-    </div>
-  </div>
-
-  <!-- Project Card 3 -->
-  <div class="bg-gray-900 rounded-lg overflow-hidden shadow-md h-full project-card">
-    <img class="w-full object-cover transition-transform transform-gpu duration-300" src="DissProj.png" alt="Randomly Generating Maze" />
-    <div class="p-6 flex flex-col">
-      <p class="font-bold text-xl mb-2">Networked Unity Application</p>
-      <p class="text-base">
-        My dissertation project focused on Networked Multiplayer Games. This project was done in Unity and used the Photon extension to host for free.
-      </p>
-      <a href="Project3.html" class="mt-4 bg-gray-800 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded block">View Project</a>
-    </div>
-  </div>
-
-  <!-- Project Card 4 -->
-  <div class="bg-gray-900 rounded-lg overflow-hidden shadow-md h-full project-card">
-    <img class="w-full object-cover transition-transform transform-gpu duration-300" src="Webdev.png" alt="Randomly Generating Maze" />
-    <div class="p-6 flex flex-col">
-      <p class="font-bold text-xl mb-2">Website Development</p>
-      <p class="text-base">
-        This project involved the creation of this website with vanilla HTML, CSS, and elements of JavaScript using the Tailwind framework.
-      </p>
-      <a href="Project4.html" class="mt-4 bg-gray-800 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded block">View Project</a>
-    </div>
-  </div>
-</div>
-</div>
-</div>
+      </div>
+    </section>
 
     <!-- Footer for Social Links -->
     <footer class="mt-8">

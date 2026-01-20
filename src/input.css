@@ -33,14 +33,15 @@ body * {
 }
 
 body {
-  background-color: var(--background-color);
-  color: var(--text-color);
   margin: 0;
-  padding: 0;
-  font-family: "montserratthin_italic";
-  overflow-x: hidden;
-  display: block;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(180deg, #0b1220, #080f1a); /* this is fine */
+  color: #fff;
+  min-height: 100vh;
 }
+
 
 .dark-mode {
   background: linear-gradient(90deg, #161616, rgb(25, 25, 26));
@@ -525,3 +526,37 @@ textarea {
   background: rgba(255,105,180,0.3); /* soft pink glow */
   z-index: -1; /* behind the bullet */
 }
+
+.brand.neon {
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 4px rgba(124, 58, 237, 0.6), 0 0 8px rgba(6, 182, 212, 0.4);
+}
+
+.nav-link {
+  position: relative;
+  color: rgba(255,255,255,0.9);
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -3px;
+  width: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  transition: width 0.3s;
+}
+
+.nav-link:hover {
+  color: #fff;
+  text-shadow: 0 0 8px var(--accent1), 0 0 12px var(--accent2);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Mobile menu toggle JS */
