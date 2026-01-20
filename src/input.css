@@ -356,6 +356,8 @@ textarea {
 ============================ */
 @media (max-width: 768px) {
 
+  
+
   h1 { font-size: 2.4rem; margin-top: 40px; }
   h2 { font-size: 1.8rem; padding: 40px 20px !important; }
   h3 { font-size: 1.6rem; margin-top: 40px; }
