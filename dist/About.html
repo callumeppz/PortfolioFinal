@@ -130,59 +130,59 @@
   <div class="particle" style="width:22px;height:22px;left:88%;top:78%;animation-duration:14s"></div>
 
   <!-- NAV -->
-
-    <!-- HEADER (exact DOM/classes preserved for your CSS) -->
-    <header
-      nav
-      class="navbar flex-container p-2 sm:p-3 md:p-4 lg:p-6 bg-gray-900"
-    >
-      <nav
-        class="nav flex-item text-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4"
-        aria-label="Main navigation"
-      >
-        <a href="index.html">
-          <button
-            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
-          >
-            Home
-          </button>
-        </a>
-        <a href="Project1.html">
-          <button
-            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
-          >
-            Projects
-          </button>
-        </a>
-        <a href="About.html">
-          <button
-            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
-          >
-            About
-          </button>
-        </a>
-        <a href="ContactME.html">
-          <button
-            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
-          >
-            Contact Me
-          </button>
-        </a>
-        <a
-          class="self-left"
-          target="_blank"
-          href="https://github.com/callumeppz"
-          rel="noopener noreferrer"
-        >
-          <button
-            class="tablinks bg-gray-900 hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"
-          >
-            GitHub
-          </button>
-        </a>
-      </nav>
-    </header>
-
+<!-- HEADER (exact DOM/classes preserved) -->
+<header nav class="navbar flex-container p-2 sm:p-3 md:p-4 lg:p-6 bg-gray-900">
+    <nav class="nav flex-item text-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4" aria-label="Main navigation">
+      <a href="index.html">
+        <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+          Home
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+        </button>
+      </a>
+      <a href="Project1.html">
+        <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+          Projects
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+        </button>
+      </a>
+      <a href="About.html">
+        <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+          About
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+        </button>
+      </a>
+      <a href="ContactME.html">
+        <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+          Contact Me
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+        </button>
+      </a>
+      <a class="self-left" target="_blank" href="https://github.com/callumeppz" rel="noopener noreferrer">
+        <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+          GitHub
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+        </button>
+      </a>
+    </nav>
+  </header>
+  
+  <style>
+  /* Animated underline effect */
+  .tablinks:hover span,
+  .tablinks:focus span {
+    width: 100%;
+  }
+  
+  .tablinks {
+    /* subtle 3D shadow on hover */
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+  }
+  
+  .tablinks:hover {
+    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+  }
+  </style>
+  
   <!-- MAIN HERO -->
   <main class="relative z-20">
     <section class="max-w-6xl mx-auto px-6 pt-12 pb-24 md:pb-36 lg:pb-44">
@@ -197,8 +197,6 @@
                   Callum Apps
                 </h1>
                 <p class="mt-3 text-gray-300 max-w-xl text-base md:text-lg leading-relaxed">
-                  I design resilient embedded firmware and elegant web tools — combining low-level C for ARM Cortex
-                  microcontrollers with full-stack pragmatism. I love turning hardware constraints into efficient code.
                 </p>
                 <div class="mt-4 flex flex-wrap gap-3">
                   <a href="Apps-Callum-CV.docx" download class="btn-cv text-sm text-white inline-flex items-center gap-3">
