@@ -141,18 +141,24 @@
 </head>
 <body>
 <!-- Header -->
-<header class="site-header max-w-6xl mx-auto px-6 py-6 w-full">
+<header class="site-header sticky top-0 z-50 w-full backdrop-blur-md bg-gray-900/70 shadow-lg max-w-6xl mx-auto px-6 py-4 transition-colors duration-300">
   <div class="flex items-center justify-between">
-    <div class="brand neon text-2xl font-extrabold tracking-wide">Callum Apps</div>
+    <!-- Brand -->
+    <div class="brand neon text-2xl sm:text-3xl font-extrabold tracking-wide">
+      Callum Apps
+    </div>
+
+    <!-- Navigation -->
     <nav class="nav-links flex gap-6 text-sm sm:text-base md:text-base lg:text-base" aria-label="Main navigation">
       <a href="index.html" class="hover:text-purple-400 transition-colors duration-200">Home</a>
-      <a href="Project1.html" class="hover:text-purple-400 transition-colors duration-200">Projects</a>
+      <a href="projects.html" class="hover:text-purple-400 transition-colors duration-200">Projects</a>
       <a href="about.html" class="hover:text-purple-400 transition-colors duration-200">About</a>
-      <a href="ContactME.html" class="hover:text-purple-400 transition-colors duration-200">Contact</a>
+      <a href="contact.html" class="hover:text-purple-400 transition-colors duration-200">Contact</a>
       <a href="https://github.com/callumeppz" target="_blank" rel="noopener noreferrer" class="hover:text-purple-400 transition-colors duration-200">GitHub</a>
     </nav>
   </div>
 </header>
+
 
 
   <!-- Main content -->
@@ -215,13 +221,13 @@
     <div class="glass p-6 rounded-2xl">
       <div class="timeline-wrap relative">
         <!-- Vertical timeline line -->
-        <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-pink-500 to-purple-700 rounded-full top-0 bottom-0 opacity-80"></div>
+        <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-pink-500 to-purple-700 rounded-full top-0 bottom-0 opacity-20"></div>
 
         <!-- Timeline Item 1 -->
         <div class="timeline-item grid grid-cols-1 md:grid-cols-3 gap-4 items-start my-8">
           <div></div>
           <div class="flex justify-center">
-            <div class="timeline-bullet bg-gradient-to-b from-purple-600 to-teal-400">G</div>
+            <div class="timeline-bullet bg-gradient-to-b from-purple-600 to-teal-400"></div>
           </div>
           <div>
             <div class="timeline-card p-4 rounded-xl glass">
@@ -265,7 +271,7 @@
             </div>
           </div>
           <div class="flex justify-center">
-            <div class="timeline-bullet bg-gradient-to-b from-pink-400 to-indigo-500">IT</div>
+            <div class="timeline-bullet bg-gradient-to-b from-pink-400 to-indigo-500"></div>
           </div>
           <div></div>
         </div>
@@ -274,7 +280,7 @@
         <div class="timeline-item grid grid-cols-1 md:grid-cols-3 gap-4 items-start my-8">
           <div></div>
           <div class="flex justify-center">
-            <div class="timeline-bullet bg-gradient-to-b from-purple-600 to-pink-400">QA</div>
+            <div class="timeline-bullet bg-gradient-to-b from-purple-600 to-pink-400"></div>
           </div>
           <div>
             <div class="timeline-card p-4 rounded-xl glass">
@@ -315,7 +321,7 @@
             </div>
           </div>
           <div class="flex justify-center">
-            <div class="timeline-bullet bg-gradient-to-r from-purple-600 to-teal-400">ED</div>
+            <div class="timeline-bullet bg-gradient-to-r from-purple-600 to-teal-400"></div>
           </div>
           <div></div>
         </div>
