@@ -86,13 +86,17 @@ body {
 }
 
 header {
-  position: fixed;
-  top: 0px;
+  position: sticky; /* or fixed if you want always visible */
+  top: 0;
   left: 0;
   width: 100%;
-  z-index: 99;
-  background-color: gray;
+  z-index: 50; /* enough for most layouts */
+  background-color: rgba(30,30,30,0.7); /* semi-transparent */
+  backdrop-filter: blur(10px); /* glassy blur effect */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* subtle shadow */
+  transition: all 0.3s ease; /* smooth shrink/hover transitions */
 }
+
 
 main {
   width: 100%;

@@ -247,123 +247,97 @@
   </article>
 </section>
 
-<!-- Timeline & sidebar (stacked on smaller viewports) -->
-<section class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+<section class="max-w-6xl mx-auto p-6">
+  <div class="glass p-6 rounded-2xl relative">
+    <!-- Timeline line on the far right -->
+    <div class="timeline-line absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-pink-500 to-purple-700 rounded-full opacity-20"></div>
 
-  <!-- Timeline column -->
-  <div class="md:col-span-2">
-    <div class="glass p-6 rounded-2xl">
-      <div class="timeline-wrap relative">
-        <!-- Vertical timeline line -->
-        <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-pink-500 to-purple-700 rounded-full top-0 bottom-0 opacity-20"></div>
-
-        <!-- Timeline Item 1 -->
-        <div class="timeline-item grid grid-cols-1 md:grid-cols-3 gap-4 items-start my-8">
-          <div></div>
-          <div class="flex justify-center">
-            <div class="timeline-bullet bg-gradient-to-b from-purple-600 to-teal-400"></div>
-          </div>
+    <!-- Timeline Item 1 -->
+    <div class="timeline-item relative my-8 flex flex-col md:flex-row md:items-start">
+      <!-- Card -->
+      <div class="timeline-card p-4 rounded-xl glass md:mr-6 md:flex-1">
+        <div class="flex items-start justify-between">
           <div>
-            <div class="timeline-card p-4 rounded-xl glass">
-              <div class="flex items-start justify-between">
-                <div>
-                  <p class="text-lg font-semibold">Graduate Software Engineer</p>
-                  <p class="muted text-sm">BAE Systems — Rochester, Kent, UK</p>
-                  <p class="muted text-xs">Sept 2024 – Present • SC Cleared</p>
-                </div>
-                <button class="toggle-btn text-sm font-semibold" data-target="c1" aria-controls="c1" aria-expanded="false">Details</button>
-              </div>
-              <div id="c1" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
-                <ul class="list-disc list-inside">
-                  <li>Embedded DO-178C Level C/D firmware on ARM Cortex MCUs.</li>
-                  <li>Low-level C drivers and FPGA CSU development.</li>
-                  <li>SysML architecture & documentation; CI/CD integration.</li>
-                </ul>
-              </div>
-            </div>
+            <p class="text-lg font-semibold">Graduate Software Engineer</p>
+            <p class="muted text-sm">BAE Systems — Rochester, Kent, UK</p>
+            <p class="muted text-xs">Sept 2024 – Present • SC Cleared</p>
           </div>
+          <button class="toggle-btn text-sm font-semibold" data-target="c1" aria-controls="c1" aria-expanded="false">Details</button>
         </div>
-
-        <!-- Timeline Item 2 -->
-        <div class="timeline-item grid grid-cols-1 md:grid-cols-3 gap-4 items-start my-8">
-          <div>
-            <div class="timeline-card p-4 rounded-xl glass">
-              <div class="flex items-start justify-between">
-                <div>
-                  <p class="text-lg font-semibold">IT Support Analyst</p>
-                  <p class="muted text-sm">University of Reading — Reading, UK</p>
-                  <p class="muted text-xs">Sept 2023 – July 2024</p>
-                </div>
-                <button class="toggle-btn text-sm font-semibold" data-target="c2" aria-controls="c2" aria-expanded="false">Details</button>
-              </div>
-              <div id="c2" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
-                <ul class="list-disc list-inside">
-                  <li>Authentication, account management and network support.</li>
-                  <li>Shell scripting, PowerShell and Linux diagnostics.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="flex justify-center">
-            <div class="timeline-bullet bg-gradient-to-b from-pink-400 to-indigo-500"></div>
-          </div>
-          <div></div>
+        <div id="c1" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
+          <ul class="list-disc list-inside">
+            <li>Embedded DO-178C Level C/D firmware on ARM Cortex MCUs.</li>
+            <li>Low-level C drivers and FPGA CSU development.</li>
+            <li>SysML architecture & documentation; CI/CD integration.</li>
+          </ul>
         </div>
-
-        <!-- Timeline Item 3 -->
-        <div class="timeline-item grid grid-cols-1 md:grid-cols-3 gap-4 items-start my-8">
-          <div></div>
-          <div class="flex justify-center">
-            <div class="timeline-bullet bg-gradient-to-b from-purple-600 to-pink-400"></div>
-          </div>
-          <div>
-            <div class="timeline-card p-4 rounded-xl glass">
-              <div class="flex items-start justify-between">
-                <div>
-                  <p class="text-lg font-semibold">Games Functionality Tester</p>
-                  <p class="muted text-sm">Microsoft/Huntress</p>
-                  <p class="muted text-xs">Sept 2022 – Oct 2023</p>
-                </div>
-                <button class="toggle-btn text-sm font-semibold" data-target="c3" aria-controls="c3" aria-expanded="false">Details</button>
-              </div>
-              <div id="c3" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
-                <ul class="list-disc list-inside">
-                  <li>Executed structured test cases and defect reproduction.</li>
-                  <li>Improved QA traceability using Excel and tracking tools.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Timeline Item 4 -->
-        <div class="timeline-item grid grid-cols-1 md:grid-cols-3 gap-4 items-start my-8">
-          <div>
-            <div class="timeline-card p-4 rounded-xl glass">
-              <div class="flex items-start justify-between">
-                <div>
-                  <p class="text-lg font-semibold">BSc Computer Science — First-Class Honours</p>
-                  <p class="muted text-sm">University of Reading</p>
-                  <p class="muted text-xs">Sept 2021 – July 2024</p>
-                </div>
-                <button class="toggle-btn text-sm font-semibold" data-target="c4" aria-controls="c4" aria-expanded="false">Details</button>
-              </div>
-              <div id="c4" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
-                <p><strong>Key modules:</strong> Algorithms, OS, Compilers, Computer Architecture, Networking, Databases, AI, Data Science, NLP.</p>
-                <p><strong>Dissertation:</strong> Multiplayer networked game (Java & C).</p>
-              </div>
-            </div>
-          </div>
-          <div class="flex justify-center">
-            <div class="timeline-bullet bg-gradient-to-r from-purple-600 to-teal-400"></div>
-          </div>
-          <div></div>
-        </div>
-
       </div>
+      <!-- Bullet -->
+      <div class="timeline-bullet absolute md:relative right-0 md:ml-0 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-b from-purple-600 to-teal-400 shadow-lg mt-4 md:mt-0"></div>
     </div>
-  </div>
 
+    <!-- Timeline Item 2 -->
+    <div class="timeline-item relative my-8 flex flex-col md:flex-row md:items-start">
+      <div class="timeline-card p-4 rounded-xl glass md:mr-6 md:flex-1">
+        <div class="flex items-start justify-between">
+          <div>
+            <p class="text-lg font-semibold">IT Support Analyst</p>
+            <p class="muted text-sm">University of Reading — Reading, UK</p>
+            <p class="muted text-xs">Sept 2023 – July 2024</p>
+          </div>
+          <button class="toggle-btn text-sm font-semibold" data-target="c2" aria-controls="c2" aria-expanded="false">Details</button>
+        </div>
+        <div id="c2" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
+          <ul class="list-disc list-inside">
+            <li>Authentication, account management and network support.</li>
+            <li>Shell scripting, PowerShell and Linux diagnostics.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-bullet absolute md:relative right-0 md:ml-0 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-b from-pink-400 to-indigo-500 shadow-lg mt-4 md:mt-0"></div>
+    </div>
+
+    <!-- Timeline Item 3 -->
+    <div class="timeline-item relative my-8 flex flex-col md:flex-row md:items-start">
+      <div class="timeline-card p-4 rounded-xl glass md:mr-6 md:flex-1">
+        <div class="flex items-start justify-between">
+          <div>
+            <p class="text-lg font-semibold">Games Functionality Tester</p>
+            <p class="muted text-sm">Microsoft/Huntress</p>
+            <p class="muted text-xs">Sept 2022 – Oct 2023</p>
+          </div>
+          <button class="toggle-btn text-sm font-semibold" data-target="c3" aria-controls="c3" aria-expanded="false">Details</button>
+        </div>
+        <div id="c3" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
+          <ul class="list-disc list-inside">
+            <li>Executed structured test cases and defect reproduction.</li>
+            <li>Improved QA traceability using Excel and tracking tools.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-bullet absolute md:relative right-0 md:ml-0 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-b from-purple-600 to-pink-400 shadow-lg mt-4 md:mt-0"></div>
+    </div>
+
+    <!-- Timeline Item 4 -->
+    <div class="timeline-item relative my-8 flex flex-col md:flex-row md:items-start">
+      <div class="timeline-card p-4 rounded-xl glass md:mr-6 md:flex-1">
+        <div class="flex items-start justify-between">
+          <div>
+            <p class="text-lg font-semibold">BSc Computer Science — First-Class Honours</p>
+            <p class="muted text-sm">University of Reading</p>
+            <p class="muted text-xs">Sept 2021 – July 2024</p>
+          </div>
+          <button class="toggle-btn text-sm font-semibold" data-target="c4" aria-controls="c4" aria-expanded="false">Details</button>
+        </div>
+        <div id="c4" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
+          <p><strong>Key modules:</strong> Algorithms, OS, Compilers, Computer Architecture, Networking, Databases, AI, Data Science, NLP.</p>
+          <p><strong>Dissertation:</strong> Multiplayer networked game (Java & C).</p>
+        </div>
+      </div>
+      <div class="timeline-bullet absolute md:relative right-0 md:ml-0 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-purple-600 to-teal-400 shadow-lg mt-4 md:mt-0"></div>
+    </div>
+
+  </div>
 </section>
 
 
