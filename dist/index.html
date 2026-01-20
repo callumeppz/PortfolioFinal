@@ -141,56 +141,57 @@
 </head>
 <body>
 <!-- Header -->
-<header id="site-header" class="site-header sticky top-0 z-50 w-full backdrop-blur-md bg-gray-900/70 shadow-lg max-w-6xl mx-auto px-6 py-4 transition-all duration-300">
-  <div class="flex items-center justify-between">
-    <!-- Brand -->
-    <div class="brand neon text-2xl sm:text-3xl font-extrabold tracking-wide transition-all duration-300">
-      Callum Apps
-    </div>
-
-    <!-- Navigation -->
-    <nav class="nav-links flex gap-6 text-sm sm:text-base md:text-base lg:text-base transition-all duration-300" aria-label="Main navigation">
-      <a href="index.html" class="hover:text-purple-400 transition-colors duration-200">Home</a>
-      <a href="projects.html" class="hover:text-purple-400 transition-colors duration-200">Projects</a>
-      <a href="about.html" class="hover:text-purple-400 transition-colors duration-200">About</a>
-      <a href="contact.html" class="hover:text-purple-400 transition-colors duration-200">Contact</a>
-      <a href="https://github.com/callumeppz" target="_blank" rel="noopener noreferrer" class="hover:text-purple-400 transition-colors duration-200">GitHub</a>
-    </nav>
-  </div>
+<header nav class="navbar flex-container p-2 sm:p-3 md:p-4 lg:p-6 bg-gray-900">
+  <nav class="nav flex-item text-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4" aria-label="Main navigation">
+    <a href="index.html">
+      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+        Home
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+      </button>
+    </a>
+    <a href="Project1.html">
+      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+        Projects
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+      </button>
+    </a>
+    <a href="About.html">
+      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+        About
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+      </button>
+    </a>
+    <a href="ContactME.html">
+      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+        Contact Me
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+      </button>
+    </a>
+    <a class="self-left" target="_blank" href="https://github.com/callumeppz" rel="noopener noreferrer">
+      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
+        GitHub
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
+      </button>
+    </a>
+  </nav>
 </header>
 
-<script>
-  // Shrink header on scroll
-  const header = document.getElementById('site-header');
-  const brand = header.querySelector('.brand');
-  const navLinks = header.querySelector('.nav-links');
+<style>
+/* Animated underline effect */
+.tablinks:hover span,
+.tablinks:focus span {
+  width: 100%;
+}
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) { // smaller threshold for phones
-      header.classList.add('py-2', 'shadow-xl', 'bg-gray-900/90');
-      header.classList.remove('py-4');
+.tablinks {
+  /* subtle 3D shadow on hover */
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
 
-      // shrink brand text slightly
-      brand.classList.add('text-xl');
-      brand.classList.remove('text-2xl', 'sm:text-3xl');
-
-      // shrink nav text slightly
-      navLinks.classList.add('text-xs', 'sm:text-sm');
-      navLinks.classList.remove('text-sm', 'sm:text-base');
-    } else {
-      header.classList.remove('py-2', 'shadow-xl', 'bg-gray-900/90');
-      header.classList.add('py-4');
-
-      // restore brand text
-      brand.classList.remove('text-xl');
-      brand.classList.add('text-2xl', 'sm:text-3xl');
-
-      // restore nav text
-      navLinks.classList.remove('text-xs', 'sm:text-sm');
-      navLinks.classList.add('text-sm', 'sm:text-base');
-    }
-  });
-</script>
+.tablinks:hover {
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+}
+</style>
 
 
 
@@ -246,16 +247,15 @@
     <!-- optional microcopy -->
   </article>
 </section>
-
 <section class="max-w-6xl mx-auto p-6">
   <div class="glass p-6 rounded-2xl relative">
     <!-- Timeline line on the far right -->
-    <div class="timeline-line absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-pink-500 to-purple-700 rounded-full opacity-20"></div>
+    <div class="timeline-line absolute right-6 top-0 bottom-0 w-1 bg-gradient-to-b from-pink-500 to-purple-700 rounded-full opacity-20"></div>
 
     <!-- Timeline Item 1 -->
     <div class="timeline-item relative my-8 flex flex-col md:flex-row md:items-start">
       <!-- Card -->
-      <div class="timeline-card p-4 rounded-xl glass md:mr-6 md:flex-1">
+      <div class="timeline-card p-4 rounded-xl glass md:mr-8 md:flex-1 md:max-w-[calc(100%-3rem)]">
         <div class="flex items-start justify-between">
           <div>
             <p class="text-lg font-semibold">Graduate Software Engineer</p>
@@ -273,12 +273,12 @@
         </div>
       </div>
       <!-- Bullet -->
-      <div class="timeline-bullet absolute md:relative right-0 md:ml-0 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-b from-purple-600 to-teal-400 shadow-lg mt-4 md:mt-0"></div>
+      <div class="timeline-bullet absolute md:relative right-6 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-b from-purple-600 to-teal-400 shadow-lg mt-4 md:mt-0"></div>
     </div>
 
     <!-- Timeline Item 2 -->
     <div class="timeline-item relative my-8 flex flex-col md:flex-row md:items-start">
-      <div class="timeline-card p-4 rounded-xl glass md:mr-6 md:flex-1">
+      <div class="timeline-card p-4 rounded-xl glass md:mr-8 md:flex-1 md:max-w-[calc(100%-3rem)]">
         <div class="flex items-start justify-between">
           <div>
             <p class="text-lg font-semibold">IT Support Analyst</p>
@@ -294,16 +294,16 @@
           </ul>
         </div>
       </div>
-      <div class="timeline-bullet absolute md:relative right-0 md:ml-0 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-b from-pink-400 to-indigo-500 shadow-lg mt-4 md:mt-0"></div>
+      <div class="timeline-bullet absolute md:relative right-6 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-b from-pink-400 to-indigo-500 shadow-lg mt-4 md:mt-0"></div>
     </div>
 
     <!-- Timeline Item 3 -->
     <div class="timeline-item relative my-8 flex flex-col md:flex-row md:items-start">
-      <div class="timeline-card p-4 rounded-xl glass md:mr-6 md:flex-1">
+      <div class="timeline-card p-4 rounded-xl glass md:mr-8 md:flex-1 md:max-w-[calc(100%-3rem)]">
         <div class="flex items-start justify-between">
           <div>
-            <p class="text-lg font-semibold">Games Functionality Tester</p>
-            <p class="muted text-sm">Microsoft/Huntress</p>
+            <p class="text-lg font-semibold">Games Function Tester</p>
+            <p class="muted text-sm">Microsoft</p>
             <p class="muted text-xs">Sept 2022 – Oct 2023</p>
           </div>
           <button class="toggle-btn text-sm font-semibold" data-target="c3" aria-controls="c3" aria-expanded="false">Details</button>
@@ -315,12 +315,12 @@
           </ul>
         </div>
       </div>
-      <div class="timeline-bullet absolute md:relative right-0 md:ml-0 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-b from-purple-600 to-pink-400 shadow-lg mt-4 md:mt-0"></div>
+      <div class="timeline-bullet absolute md:relative right-6 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-b from-purple-600 to-pink-400 shadow-lg mt-4 md:mt-0"></div>
     </div>
 
     <!-- Timeline Item 4 -->
     <div class="timeline-item relative my-8 flex flex-col md:flex-row md:items-start">
-      <div class="timeline-card p-4 rounded-xl glass md:mr-6 md:flex-1">
+      <div class="timeline-card p-4 rounded-xl glass md:mr-8 md:flex-1 md:max-w-[calc(100%-3rem)]">
         <div class="flex items-start justify-between">
           <div>
             <p class="text-lg font-semibold">BSc Computer Science — First-Class Honours</p>
@@ -334,11 +334,12 @@
           <p><strong>Dissertation:</strong> Multiplayer networked game (Java & C).</p>
         </div>
       </div>
-      <div class="timeline-bullet absolute md:relative right-0 md:ml-0 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-purple-600 to-teal-400 shadow-lg mt-4 md:mt-0"></div>
+      <div class="timeline-bullet absolute md:relative right-6 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-purple-600 to-teal-400 shadow-lg mt-4 md:mt-0"></div>
     </div>
 
   </div>
 </section>
+
 
 
       <!-- Sidebar / skills -->
