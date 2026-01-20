@@ -265,19 +265,20 @@
 
 
 <body>
-
-<header class="site-header">
-  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <div class="font-extrabold text-xl">Callum Apps</div>
-    <nav class="nav-links flex gap-4 text-sm">
-      <a href="#home">Home</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-      <a href="https://github.com/callumeppz" target="_blank" rel="noopener noreferrer">GitHub</a>
-    </nav>
-  </div>
-</header>
+  <header class="site-header">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-2">
+      <div class="font-extrabold text-lg w-full sm:w-auto">Callum Apps</div>
+  
+      <nav class="nav-links flex flex-wrap gap-2 text-sm w-full sm:w-auto">
+        <a href="#home">Home</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/callumeppz" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  
 
 <main>
 
@@ -328,8 +329,10 @@
     <div class="space-y-24">
 
       <!-- Graduate Software Engineer -->
-      <div class="timeline-item">
-        <div class="w-1/2 pr-10 text-right">
+      <div class="timeline-item flex flex-col md:flex-row md:items-start md:gap-6">
+        
+        <!-- LEFT SIDE -->
+        <div class="w-full md:w-1/2 md:pr-10 md:text-right">
           <div class="timeline-card">
 
             <button 
@@ -340,10 +343,8 @@
               <span class="text-lg arrow">▸</span>
             </button>
 
-
-
-            <div class="content" style="display: none;">
-              <p class="muted mt-3 leading-relaxed">
+            <div class="content hidden">
+              <p class="muted mt-3 leading-relaxed space-y-1">
                 <span class="block">• Developed and delivered DO‑178C Level C/D embedded firmware on ARM Cortex MCUs.</span>
                 <span class="block">• Engineered low‑level C drivers and CSU’s for FPGA-based systems.</span>
                 <span class="block">• Contributed to system-level design using SysML and produced architecture documentation.</span>
@@ -352,22 +353,27 @@
                 <span class="block">• Delivered firmware via CI/CD pipelines using Jenkins and Bitbucket.</span>
               </p>
             </div>
+
             <p class="muted text-sm mt-1">2024 — Present</p>
           </div>
         </div>
 
-        <div class="timeline-bullet">SW</div>
-        <div class="w-1/2"></div>
+        <!-- BULLET -->
+        <div class="timeline-bullet mx-auto md:mx-0">SW</div>
+
+        <!-- EMPTY RIGHT SIDE -->
+        <div class="hidden md:block w-1/2"></div>
       </div>
 
 
       <!-- IT Support Analyst -->
-      <div class="timeline-item">
-        <div class="w-1/2"></div>
+      <div class="timeline-item flex flex-col md:flex-row md:items-start md:gap-6">
 
-        <div class="timeline-bullet">IT</div>
+        <div class="hidden md:block w-1/2"></div>
 
-        <div class="w-1/2 pl-10">
+        <div class="timeline-bullet mx-auto md:mx-0">IT</div>
+
+        <div class="w-full md:w-1/2 md:pl-10">
           <div class="timeline-card">
 
             <button 
@@ -378,15 +384,14 @@
               <span class="text-lg arrow">▸</span>
             </button>
 
-
-
-            <div class="content" style="display: none;">
-              <p class="muted mt-3 leading-relaxed">
+            <div class="content hidden">
+              <p class="muted mt-3 leading-relaxed space-y-1">
                 <span class="block">• Diagnosed and resolved authentication, account, and OS issues (Windows & Linux).</span>
                 <span class="block">• Performed SSH-based server access, PowerShell scripting, and Linux CLI diagnostics.</span>
                 <span class="block">• Improved user experience through documentation and timely ticket resolution.</span>
               </p>
             </div>
+
             <p class="muted text-sm mt-1">2023 — 2024</p>
           </div>
         </div>
@@ -394,8 +399,9 @@
 
 
       <!-- Games Tester -->
-      <div class="timeline-item">
-        <div class="w-1/2 pr-10 text-right">
+      <div class="timeline-item flex flex-col md:flex-row md:items-start md:gap-6">
+
+        <div class="w-full md:w-1/2 md:pr-10 md:text-right">
           <div class="timeline-card">
 
             <button 
@@ -406,29 +412,32 @@
               <span class="text-lg arrow">▸</span>
             </button>
 
-            <div class="content" style="display: none;">
-              <p class="muted mt-3 leading-relaxed">
+            <div class="content hidden">
+              <p class="muted mt-3 leading-relaxed space-y-1">
                 <span class="block">• Tested pre-release titles and executed structured test cases.</span>
                 <span class="block">• Produced detailed bug reports improving defect traceability.</span>
                 <span class="block">• Tracked issues and progress using Excel and internal QA tools.</span>
               </p>
             </div>
+
             <p class="muted text-sm mt-1">2022 — 2023</p>
           </div>
         </div>
 
-        <div class="timeline-bullet">QA</div>
-        <div class="w-1/2"></div>
+        <div class="timeline-bullet mx-auto md:mx-0">QA</div>
+
+        <div class="hidden md:block w-1/2"></div>
       </div>
 
 
       <!-- Computer Science Degree -->
-      <div class="timeline-item">
-        <div class="w-1/2"></div>
+      <div class="timeline-item flex flex-col md:flex-row md:items-start md:gap-6">
 
-        <div class="timeline-bullet">CS</div>
+        <div class="hidden md:block w-1/2"></div>
 
-        <div class="w-1/2 pl-10">
+        <div class="timeline-bullet mx-auto md:mx-0">CS</div>
+
+        <div class="w-full md:w-1/2 md:pl-10">
           <div class="timeline-card">
 
             <button 
@@ -439,13 +448,14 @@
               <span class="text-lg arrow">▸</span>
             </button>
 
-            <div class="content" style="display: none;">
-              <p class="muted mt-3 leading-relaxed">
+            <div class="content hidden">
+              <p class="muted mt-3 leading-relaxed space-y-1">
                 <span class="block">• Studied Algorithms, OS, Compilers, Architecture, Networking, Databases, Security, AI, and more.</span>
                 <span class="block">• Programming in Java, Python, C, and UML-based design.</span>
                 <span class="block">• Dissertation: Real-time multiplayer game using Java + C networking.</span>
               </p>
             </div>
+
             <p class="muted text-sm mt-1">2021 — 2024</p>
           </div>
         </div>
@@ -454,6 +464,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- SKILLS -->
 <section id="skills" class="py-24 relative fade-section">
