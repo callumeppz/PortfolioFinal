@@ -1,602 +1,635 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Callum Apps — Embedded Software Engineer</title>
-  <meta name="description" content="Callum Apps — Embedded engineer specialising in low-level C, FPGA, and system design." />
+  <meta name="description" content="Callum Apps — Embedded engineer specialising in low-level C, FPGA, and system design."/>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2216WFVJ5"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
-    gtag('js', new Date());
-    gtag('config', 'G-V2216WFVJ5');
-  </script>
-
-  <!-- Tailwind CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="input.css" />
-  <link rel="stylesheet" href="output.css" />
+  <!-- Tailwind -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet"/>
 
   <style>
-    :root{
+    :root {
       --bg:#0b1220;
-      --muted:rgba(255,255,255,0.68);
-      --card:rgba(255,255,255,0.03);
-      --accent1:#7c3aed;
+      --muted:rgba(255,255,255,0.65);
+      --accent1:#8b5cf6;
       --accent2:#06b6d4;
       --glass:rgba(255,255,255,0.04);
+      --card:rgba(255,255,255,0.06);
     }
 
-    body{
+    body {
       margin:0;
-      font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+      font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto;
       background:linear-gradient(180deg,#0b1220,#080f1a);
-      color:#fff;
-      display:flex;
-      flex-direction:column;
-      min-height:100vh;
+      color:white;
+      -webkit-font-smoothing:antialiased;
     }
 
-    .muted{ color:var(--muted); }
-    .glass{ background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); backdrop-filter:blur(12px) saturate(120%); }
-    .neon{ background:linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .muted { color:var(--muted); }
 
     /* Header */
-    header.site-header{
-      background:rgba(11,18,32,0.3);
-      backdrop-filter:blur(12px);
-      padding:1.5rem 0;
-      z-index:50;
+    header.site-header {
       position:sticky;
       top:0;
+      z-index:50;
+      backdrop-filter:blur(12px);
+      background:rgba(11,18,32,0.75);
+      border-bottom:1px solid rgba(255,255,255,0.06);
     }
-    .brand{ font-weight:800; letter-spacing:-0.5px; font-size:1.5rem; }
-    .nav-links a{
-      padding:.6rem .8rem;
+
+    .nav-links a {
+      padding:.55rem .9rem;
       border-radius:10px;
       font-weight:600;
-      color:rgba(255,255,255,0.9);
-      transition:color 0.2s;
+      color:white;
+      transition:color .2s, background-color .2s;
     }
-    .nav-links a:hover{ color:var(--accent1); }
+    .nav-links a:hover {
+      color:var(--accent1);
+      background:rgba(255,255,255,0.04);
+    }
 
     /* Hero */
-    .hero-blob{
+    .hero {
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-blob {
       position:absolute;
       inset:0;
-      height:500px;
-      width:100%;
-      pointer-events:none;
       z-index:0;
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
+      pointer-events:none;
     }
-    .hero-blob>.blob{
+    .hero-blob .blob {
+      position:absolute;
+      left:50%;
+      top:18%;
       width:1000px;
-      height:500px;
-      border-radius:42%;
-      filter:blur(64px);
-      background:conic-gradient(from 120deg,rgba(124,58,237,0.34),rgba(6,182,212,0.28),rgba(236,72,153,0.18));
-      mix-blend-mode:screen;
-      opacity:0.92;
-      animation:blobAnim 14s linear infinite;
+      height:680px;
+      transform:translateX(-50%);
+      border-radius:50%;
+      filter:blur(90px);
+      background:radial-gradient(closest-side,rgba(139,92,246,0.26),rgba(6,182,212,0.18),transparent);
+      animation:floatSlow 14s ease-in-out infinite;
     }
-    @keyframes blobAnim{
-      0%{transform:translateY(-10%) rotate(0deg);}
-      50%{transform:translateY(-14%) rotate(12deg);}
-      100%{transform:translateY(-10%) rotate(0deg);}
-    }
-    @media (prefers-reduced-motion: reduce){ .hero-blob>.blob{ animation:none; } }
-    .particle{ position:absolute; border-radius:999px; opacity:0.15; mix-blend-mode:screen; }
 
-    .hero-card{
+    @keyframes floatSlow {
+      0%{transform:translateX(-50%) translateY(0);}
+      50%{transform:translateX(-50%) translateY(-20px);}
+      100%{transform:translateX(-50%) translateY(0);}
+    }
+
+    .hero-card {
       position:relative;
       z-index:10;
       padding:3rem;
-      max-width:5xl;
-      text-align:center;
-      margin:0 auto;
       border-radius:2rem;
-      box-shadow:0 20px 50px rgba(0,0,0,0.5);
+      max-width:840px;
+      text-align:center;
+      backdrop-filter:blur(14px) saturate(130%);
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:0 20px 50px rgba(0,0,0,0.45);
+      opacity:0;
+      transform:translateY(20px);
     }
-    .hero-sub{ color:var(--muted); max-width:65ch; margin:1rem auto; line-height:1.6; }
-    .chips{ display:flex; flex-wrap:wrap; justify-content:center; gap:.75rem; margin-top:1.5rem; }
-    .chip{ padding:.5rem 1rem; border-radius:999px; font-weight:600; font-size:.85rem; box-shadow:0 4px 12px rgba(0,0,0,0.25); }
-    .btn-cv{
-      display:inline-flex; align-items:center; gap:.7rem;
-      padding:.75rem 1.2rem; border-radius:1rem; font-weight:700;
+
+    .neon {
       background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      box-shadow:0 12px 36px rgba(0,0,0,0.5);
-      transition:transform 0.2s;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
     }
-    .btn-cv:hover{ transform:scale(1.05); }
+
+    .chip {
+      padding:.5rem 1rem;
+      border-radius:999px;
+      font-weight:600;
+      font-size:.85rem;
+      color:white;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      box-shadow:0 8px 20px rgba(0,0,0,0.35);
+      transition:transform .14s;
+    }
+    .chip:hover {
+      transform:translateY(-3px);
+    }
+
+    .btn-cv {
+      padding:.7rem 1.3rem;
+      border-radius:1rem;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:white;
+      font-weight:700;
+      box-shadow:0 10px 30px rgba(0,0,0,0.5);
+      transition:transform .18s, box-shadow .18s;
+    }
+    .btn-cv:hover {
+      transform:scale(1.05);
+      box-shadow:0 16px 40px rgba(0,0,0,0.6);
+    }
+
+    /* Section glow blobs */
+    .section-blob-wrapper {
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+    }
+    .section-blob {
+      position:absolute;
+      width:600px;
+      height:400px;
+      background:radial-gradient(closest-side,rgba(139,92,246,0.18),rgba(6,182,212,0.12),transparent);
+      filter:blur(80px);
+      border-radius:50%;
+      opacity:0.7;
+      left:50%;
+      top:-80px;
+      transform:translateX(-50%);
+    }
 
     /* Timeline */
-    .timeline-wrap{ position:relative; }
-    .timeline-line{ position:absolute; left:50%; transform:translateX(-50%); width:6px; background:linear-gradient(180deg,#f472b6,#7c3aed); border-radius:999px; top:0; bottom:0; opacity:0.9; }
-    .timeline-item{ display:grid; grid-template-columns:1fr minmax(80px,160px) 1fr; gap:1rem; align-items:start; margin:3rem 0; }
-    .timeline-card{ background:rgba(8,12,18,0.75); border-radius:1rem; padding:1.25rem; box-shadow:0 8px 36px rgba(0,0,0,0.4); transition:transform 0.15s; }
-    .timeline-card:hover{ transform:translateY(-5px); }
-    .timeline-bullet{ width:60px; height:60px; border-radius:999px; display:flex; align-items:center; justify-content:center; font-weight:800; color:white; box-shadow:0 10px 30px rgba(0,0,0,0.5); }
+    .timeline-line {
+      position:absolute;
+      left:50%;
+      top:0;
+      bottom:0;
+      transform:translateX(-50%);
+      width:4px;
+      border-radius:999px;
+      background:linear-gradient(180deg,var(--accent2),var(--accent1));
+      opacity:0.4;
+    }
+
+    .timeline-item {
+      display:flex;
+      align-items:flex-start;
+      gap:2rem;
+      position:relative;
+      opacity:0;
+      transform:translateY(40px);
+    }
+
+    .timeline-card {
+      background:var(--card);
+      padding:1.6rem;
+      border-radius:1.1rem;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 8px 36px rgba(0,0,0,0.4);
+      transition:transform .15s;
+    }
+    .timeline-card:hover {
+      transform:translateY(-5px);
+    }
+
+    .timeline-bullet {
+      width:60px;
+      height:60px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      box-shadow:0 10px 26px rgba(0,0,0,0.45);
+      color:white;
+      flex-shrink:0;
+    }
 
     /* Skills */
-    .skill-track{ background: rgba(255,255,255,0.05); height:12px; border-radius:999px; overflow:hidden; }
-    .skill-fill{ height:100%; transform-origin:left; transform:scaleX(0); transition:transform 1s cubic-bezier(.2,.9,.3,1); }
+    .skill-track {
+      height:10px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.07);
+      overflow:hidden;
+    }
+    .skill-fill {
+      height:100%;
+      transform-origin:left;
+      transform:scaleX(var(--lv,1));
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    }
 
-    footer.site-footer{
-      margin-top:auto;
-      padding:1.5rem 0;
+    /* Sections fade-in */
+    .fade-section {
+      opacity:0;
+      transform:translateY(40px);
+    }
+
+    footer {
       border-top:1px solid rgba(255,255,255,0.06);
+      padding:2rem 0;
       text-align:center;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    @media (max-width:768px) {
+      .hero-card {
+        padding:2.2rem;
+        margin:0 1.25rem;
+      }
+      .timeline-item {
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .timeline-line {
+        left:24px;
+        transform:none;
+      }
+      .timeline-bullet {
+        margin-left:0.25rem;
+      }
+      .timeline-item > .w-1\/2 {
+        width:100%;
+        padding:0 !important;
+        text-align:left !important;
+      }
     }
   </style>
 </head>
+
+<script>
+
+</script>
+
+
+
 <body>
-<!-- Header -->
-<header nav class="navbar flex-container p-2 sm:p-3 md:p-4 lg:p-6 bg-gray-900">
-  <nav class="nav flex-item text-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4" aria-label="Main navigation">
-    <a href="index.html">
-      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-        Home
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
-      </button>
-    </a>
-    <a href="Project1.html">
-      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-        Projects
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
-      </button>
-    </a>
-    <a href="About.html">
-      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-        About
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
-      </button>
-    </a>
-    <a href="ContactME.html">
-      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-        Contact Me
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
-      </button>
-    </a>
-    <a class="self-left" target="_blank" href="https://github.com/callumeppz" rel="noopener noreferrer">
-      <button class="tablinks bg-gray-900 relative overflow-hidden hover:text-purple-300 focus:outline-none focus:shadow-outline-purple transition-transform duration-300 transform active:scale-95 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">
-        GitHub
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300"></span>
-      </button>
-    </a>
-  </nav>
+
+<header class="site-header">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="font-extrabold text-xl">Callum Apps</div>
+    <nav class="nav-links flex gap-4 text-sm">
+      <a href="#home">Home</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/callumeppz" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+  </div>
 </header>
 
-<style>
-/* Animated underline effect */
-.tablinks:hover span,
-.tablinks:focus span {
-  width: 100%;
-}
+<main>
 
-.tablinks {
-  /* subtle 3D shadow on hover */
-  box-shadow: 0 0 0 rgba(0,0,0,0);
-}
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-blob"><div class="blob"></div></div>
 
-.tablinks:hover {
-  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
-}
-</style>
-
-
-
-
-  <!-- Main content -->
-  <main class="relative z-10 w-full px-6 py-8">
-<!-- Hero (blob + content) -->
-<section class="relative mb-16 py-12" aria-labelledby="hero-title">
-  <style>
-    :root{
-      --accent1: #8b5cf6; /* purple */
-      --accent2: #06b6d4; /* teal */
-      --muted: rgba(255,255,255,0.65);
-    }
-
-    /* glass fallback if not defined */
-    .glass {
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      -webkit-backdrop-filter: blur(8px);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.04);
-    }
-
-    /* subtle neon heading if not defined */
-    .neon {
-      color: white;
-      text-shadow: 0 6px 24px rgba(139,92,246,0.12), 0 2px 6px rgba(6,182,212,0.04);
-    }
-
-    /* ambient blob & particles */
-    .hero-blob { position:absolute; inset:0; pointer-events:none; z-index:0; }
-    .hero-blob .blob{
-      position:absolute;
-      left:50%;
-      top:8%;
-      width:680px;
-      height:480px;
-      transform:translateX(-50%);
-      background: radial-gradient(closest-corner, rgba(139,92,246,0.12), rgba(6,182,212,0.06));
-      filter: blur(90px);
-      border-radius:50%;
-      z-index:-1;
-      opacity:0.95;
-      animation: floatSlow 10s ease-in-out infinite;
-    }
-    .hero-blob .particle{
-      position:absolute;
-      border-radius:999px;
-      box-shadow:0 8px 30px rgba(0,0,0,0.35), inset 0 -6px 12px rgba(255,255,255,0.02);
-      opacity:0.98;
-      transform-origin:center;
-      animation: particleFloat 6s ease-in-out infinite;
-    }
-    .hero-blob .particle:nth-child(2){ animation-duration:5.6s; }
-    .hero-blob .particle:nth-child(3){ animation-duration:7.2s; }
-
-    @keyframes floatSlow {
-      0%{ transform:translateX(-50%) translateY(0); }
-      50%{ transform:translateX(-50%) translateY(-16px); }
-      100%{ transform:translateX(-50%) translateY(0); }
-    }
-    @keyframes particleFloat {
-      0%{ transform: translateY(0) scale(1); opacity:0.95; }
-      50%{ transform: translateY(-10px) scale(1.06); opacity:1; }
-      100%{ transform: translateY(0) scale(1); opacity:0.95; }
-    }
-
-    /* chips */
-    .chip {
-      transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s;
-      will-change: transform;
-    }
-    .chip:focus, .chip:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 30px rgba(99,102,241,0.12);
-      outline: none;
-    }
-
-    /* CTA primary */
-    .btn-cv {
-      background: linear-gradient(90deg,var(--accent1),var(--accent2));
-      color: white;
-      padding: .5rem .9rem;
-      border-radius: .6rem;
-      box-shadow: 0 8px 30px rgba(99,102,241,0.12), 0 2px 6px rgba(0,0,0,0.35);
-      transition: transform .14s ease, box-shadow .14s ease;
-    }
-    .btn-cv:hover { transform: translateY(-3px) scale(1.01); }
-    .btn-cv:focus { box-shadow: 0 0 0 4px rgba(139,92,246,0.12); outline:none; }
-
-    /* respect reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .hero-blob .blob, .hero-blob .particle { animation: none; }
-      .chip, .btn-cv { transition: none; }
-    }
-
-    /* responsive tweaks */
-    @media (max-width:640px){
-      .hero-blob .blob { width:420px; height:320px; top:6%; left:50%; }
-    }
-  </style>
-
-<!-- decorative visuals (purely decorative) -->
-<div class="hero-blob pointer-events-none select-none" aria-hidden="true">
-  <div class="blob"></div>
-
-  <!-- particles -->
-  <div class="particle" style="width:18px;height:18px;left:6%;top:8%;background:linear-gradient(135deg,var(--accent1),var(--accent2));"></div>
-  <div class="particle" style="width:15px;height:15px;left:22%;top:72%;background:linear-gradient(135deg,var(--accent2),var(--accent1));"></div>
-  <div class="particle" style="width:14px;height:14px;left:78%;top:36%;background:linear-gradient(135deg,var(--accent1),var(--accent2));"></div>
-
-  <!-- new particles -->
-  <div class="particle" style="width:10px;height:10px;left:14%;top:30%;background:linear-gradient(135deg,var(--accent2),var(--accent1));opacity:.8;"></div>
-  <div class="particle" style="width:12px;height:12px;left:40%;top:16%;background:linear-gradient(135deg,var(--accent1),var(--accent2));opacity:.9;"></div>
-  <div class="particle" style="width:16px;height:16px;left:64%;top:12%;background:linear-gradient(135deg,var(--accent2),var(--accent1));opacity:.9;"></div>
-  <div class="particle" style="width:13px;height:13px;right:10%;top:68%;background:linear-gradient(135deg,var(--accent1),var(--accent2));opacity:.7;"></div>
-  <div class="particle" style="width:9px;height:9px;right:24%;top:42%;background:linear-gradient(135deg,var(--accent2),var(--accent1));opacity:.8;"></div>
-  <div class="particle" style="width:14px;height:14px;right:33%;bottom:20%;background:linear-gradient(135deg,var(--accent1),var(--accent2));opacity:.85;"></div>
-  <div class="particle" style="width:10px;height:10px;left:12%;bottom:28%;background:linear-gradient(135deg,var(--accent2),var(--accent1));opacity:.7;"></div>
-  <div class="particle" style="width:13px;height:13px;left:30%;bottom:14%;background:linear-gradient(135deg,var(--accent1),var(--accent2));opacity:.75;"></div>
-  <div class="particle" style="width:20px;height:20px;right:18%;bottom:8%;background:linear-gradient(135deg,var(--accent2),var(--accent1));opacity:.9;"></div>
-</div>
-
-
-  <!-- content -->
-  <article class="hero-card glass relative mx-auto max-w-5xl text-center px-8 py-14 md:px-16 md:py-20 rounded-3xl shadow-xl backdrop-blur-lg border border-white/5 z-10" role="region" aria-labelledby="hero-title">
-    <div class="text-xs sm:text-sm tracking-wide uppercase text-purple-300/80 mb-3" aria-hidden="true">
-      Embedded Systems • SysML & Web Development • Low-Level Software
+  <div class="hero-card">
+    <div class="text-purple-300/80 text-xs tracking-wide uppercase mb-3">
+      Low-level C Embedded Systems • Web and SysML Design • Machine learning and NLP
     </div>
 
-    <h1 id="hero-title" class="neon text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4">
-      Callum Apps <span class="text-base text-gray-300 font-medium inline-block ml-2 align-sub">| Software Engineer</span>
+    <h1 class="neon text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
+      Callum Apps
     </h1>
 
-    <p class="hero-sub text-sm sm:text-base md:text-lg text-gray-300/90 mt-2 max-w-3xl mx-auto leading-relaxed">
-      Embedded Software Engineer specialising in C firmware, device drivers and UML-based system design.
-      I build reliable low-level systems for real hardware and bridge the gap between silicon and software.
-      First-class BSc (Hons) — Computer Science.
+    <p class="muted text-base md:text-lg max-w-2xl mx-auto mb-6">
+      Embedded Software Engineer, developing low-level C software for FPGA-based systems, with
+      hands-on hardware integration, testing, and system design in an Agile/Scrum environment. <br>
+      Strong academic background in web development, data science, machine learning, embedded programming, and engineering design.
     </p>
 
-    <!-- chips -->
-    <div class="chips mt-7 flex flex-wrap justify-center gap-3" role="list" aria-label="Key skills">
-      <button role="listitem" class="chip px-4 py-2 rounded-full text-sm font-semibold shadow-sm bg-gradient-to-r from-purple-600 to-indigo-600 text-white">C (embedded)</button>
-      <button role="listitem" class="chip px-4 py-2 rounded-full text-sm font-semibold shadow-sm bg-gradient-to-r from-pink-500 to-red-500 text-white">FPGA</button>
-      <button role="listitem" class="chip px-4 py-2 rounded-full text-sm font-semibold shadow-sm bg-gradient-to-r from-green-500 to-teal-500 text-white">SysML &amp; UML</button>
-      <button role="listitem" class="chip px-4 py-2 rounded-full text-sm font-semibold shadow-sm bg-gradient-to-r from-yellow-400 to-orange-500 text-white">CAN • UART • SPI</button>
-      <button role="listitem" class="chip px-4 py-2 rounded-full text-sm font-semibold shadow-sm bg-gradient-to-r from-blue-500 to-indigo-500 text-white">Agile • JIRA</button>
-      <button role="listitem" class="chip px-4 py-2 rounded-full text-sm font-semibold shadow-sm bg-gray-700 text-white">Data &amp; Excel</button>
+    <div class="flex flex-wrap gap-3 justify-center mb-6">
+      <div class="chip">C (embedded)</div>
+      <div class="chip">FPGA</div>
+      <div class="chip">UML / SysML</div>
+      <div class="chip">Rust</div>
+      <div class="chip">Linux</div>
+      <div class="chip">Bare-metal</div>
     </div>
 
-    <!-- CTA group -->
-    <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4 items-center">
-      <a class="btn-cv inline-flex items-center gap-3 text-sm font-semibold" href="dist/Callum-Apps-CV.pdf" download aria-label="Download Callum Apps CV">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
-        <span>Download CV</span>
-      </a>
-
-      <a class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 text-sm hover:bg-white/5 transition-colors focus:outline-none focus:ring-4 focus:ring-purple-400/20" href="mailto:callum.apps@icloud.com" aria-label="Contact Callum">
-        Contact
-      </a>
-    </div>
-  </article>
-</section>
-
-
-    <!-- optional microcopy -->
-  </article>
-</section>
-<section class="max-w-6xl mx-auto p-6">
-  <div class="glass p-6 rounded-2xl relative">
-    <!-- Timeline line on the far right -->
- 
-    <!-- Timeline Item 1 -->
-    <div class="timeline-item relative my-8 flex flex-col md:flex-row md:items-start">
-      <!-- Card -->
-      <div class="timeline-card p-4 rounded-xl glass md:mr-8 md:flex-1 md:max-w-[calc(100%-3rem)]">
-        <div class="flex items-start justify-between">
-          <div>
-            <p class="text-lg font-semibold">Graduate Software Engineer</p>
-            <p class="muted text-sm">BAE Systems — Rochester, Kent, UK</p>
-            <p class="muted text-xs">Sept 2024 – Present • SC Cleared</p>
-          </div>
-          <button class="toggle-btn text-sm font-semibold" data-target="c1" aria-controls="c1" aria-expanded="false">Details</button>
-        </div>
-        <div id="c1" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
-          <ul class="list-disc list-inside">
-            <li>Developing embedded C firmware utilising ARM Cortex MCUs.</li>
-            <li>Low-level drivers and FPGA CSU development.</li>
-            <li>SysML architecture & documentation; CI/CD integration.</li>
-          </ul>
-        </div>
-      </div>
-      <!-- Bullet -->
-      <div class="timeline-bullet absolute md:relative right-6 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-b from-purple-600 to-teal-400 shadow-lg mt-4 md:mt-0">SW</div>
-    </div>
-
-    <!-- Timeline Item 2 -->
-    <div class="timeline-item relative my-8 flex flex-col md:flex-row md:items-start">
-      <div class="timeline-card p-4 rounded-xl glass md:mr-8 md:flex-1 md:max-w-[calc(100%-3rem)]">
-        <div class="flex items-start justify-between">
-          <div>
-            <p class="text-lg font-semibold">IT Support Analyst</p>
-            <p class="muted text-sm">University of Reading — Reading, UK</p>
-            <p class="muted text-xs">Sept 2023 – July 2024</p>
-          </div>
-          <button class="toggle-btn text-sm font-semibold" data-target="c2" aria-controls="c2" aria-expanded="false">Details</button>
-        </div>
-        <div id="c2" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
-          <ul class="list-disc list-inside">
-            <li>Authentication, account management and network support.</li>
-            <li>Shell scripting, PowerShell and Linux diagnostics.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="timeline-bullet absolute md:relative right-6 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-b from-pink-400 to-indigo-500 shadow-lg mt-4 md:mt-0">IT</div>
-    </div>
-
-    <!-- Timeline Item 3 -->
-    <div class="timeline-item relative my-8 flex flex-col md:flex-row md:items-start">
-      <div class="timeline-card p-4 rounded-xl glass md:mr-8 md:flex-1 md:max-w-[calc(100%-3rem)]">
-        <div class="flex items-start justify-between">
-          <div>
-            <p class="text-lg font-semibold">Games Function Tester</p>
-            <p class="muted text-sm">Microsoft</p>
-            <p class="muted text-xs">Sept 2022 – Oct 2023</p>
-          </div>
-          <button class="toggle-btn text-sm font-semibold" data-target="c3" aria-controls="c3" aria-expanded="false">Details</button>
-        </div>
-        <div id="c3" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
-          <ul class="list-disc list-inside">
-            <li>Executed structured test cases and defect reproduction.</li>
-            <li>Improved QA traceability using Excel and tracking tools.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="timeline-bullet absolute md:relative right-6 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-b from-purple-600 to-pink-400 shadow-lg mt-4 md:mt-0">QA</div>
-    </div>
-
-    <!-- Timeline Item 4 -->
-    <div class="timeline-item relative my-8 flex flex-col md:flex-row md:items-start">
-      <div class="timeline-card p-4 rounded-xl glass md:mr-8 md:flex-1 md:max-w-[calc(100%-3rem)]">
-        <div class="flex items-start justify-between">
-          <div>
-            <p class="text-lg font-semibold">BSc Computer Science — First-Class Honours</p>
-            <p class="muted text-sm">University of Reading</p>
-            <p class="muted text-xs">Sept 2021 – July 2024</p>
-          </div>
-          <button class="toggle-btn text-sm font-semibold" data-target="c4" aria-controls="c4" aria-expanded="false">Details</button>
-        </div>
-        <div id="c4" class="collapse mt-3 text-sm muted" style="max-height:0; overflow:hidden;" aria-hidden="true">
-          <p><strong>Key modules:</strong> Algorithms, OS, Compilers, Computer Architecture, Networking, Databases, AI, Data Science, NLP.</p>
-          <p><strong>Dissertation:</strong> Multiplayer networked game (Java & C).</p>
-        </div>
-      </div>
-      <div class="timeline-bullet absolute md:relative right-6 transform md:translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-purple-600 to-teal-400 shadow-lg mt-4 md:mt-0">CS</div>
-    </div>
+    <a class="btn-cv inline-block cursor-pointer" href="Callum-Apps-CV.pdf" download="Callum-Apps-CV">Download CV</a>
 
   </div>
 </section>
 
+<!-- TIMELINE -->
+<section id="timeline" class="py-24 relative fade-section">
+  <div class="section-blob-wrapper">
+    <div class="section-blob"></div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-6 relative z-10">
+    <h2 class="text-3xl font-bold mb-12">Timeline</h2>
+
+    <div class="timeline-line"></div>
+
+    <div class="space-y-24">
+
+      <!-- Graduate Software Engineer -->
+      <div class="timeline-item">
+        <div class="w-1/2 pr-10 text-right">
+          <div class="timeline-card">
+
+            <button 
+              type="button"
+              class="w-full text-left flex items-center justify-between font-semibold text-xl collapsible"
+            >
+              <span>Graduate Software Engineer</span>
+              <span class="text-lg arrow">▸</span>
+            </button>
 
 
-      <!-- Sidebar / skills -->
-      <aside class="md:col-span-1 space-y-6">
-        <div class="glass p-6 rounded-2xl">
-          <h3 class="text-lg font-semibold neon">Skills & Tools</h3>
-          <p class="muted text-sm mt-2">Tools and proficiencies I reach for when solving embedded systems problems.</p>
 
-          <div class="mt-4 space-y-4">
-            <div>
-              <div class="flex justify-between text-sm muted mb-2"><div>Low-level Embedded C</div><div>90%</div></div>
-              <div class="skill-track"><div class="skill-fill" data-fill="0.9" style="background:linear-gradient(90deg,var(--accent1),var(--accent2));"></div></div>
+            <div class="content" style="display: none;">
+              <p class="muted mt-3 leading-relaxed">
+                <span class="block">• Developed and delivered DO‑178C Level C/D embedded firmware on ARM Cortex MCUs.</span>
+                <span class="block">• Engineered low‑level C drivers and CSU’s for FPGA-based systems.</span>
+                <span class="block">• Contributed to system-level design using SysML and produced architecture documentation.</span>
+                <span class="block">• Utilised Git for version control and configuration management.</span>
+                <span class="block">• Experienced with JIRA for workflow tracking.</span>
+                <span class="block">• Delivered firmware via CI/CD pipelines using Jenkins and Bitbucket.</span>
+              </p>
             </div>
-
-            <div>
-              <div class="flex justify-between text-sm muted mb-2"><div>Systems & Architecture</div><div>82%</div></div>
-              <div class="skill-track"><div class="skill-fill" data-fill="0.82" style="background:linear-gradient(90deg,#f97316,#fb7185);"></div></div>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-sm muted mb-2"><div>Web & Tooling</div><div>76%</div></div>
-              <div class="skill-track"><div class="skill-fill" data-fill="0.76" style="background:linear-gradient(90deg,#06b6d4,#3b82f6);"></div></div>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-sm muted mb-2"><div>Testing & QA</div><div>74%</div></div>
-              <div class="skill-track"><div class="skill-fill" data-fill="0.74" style="background:linear-gradient(90deg,#10b981,#84cc16);"></div></div>
-            </div>
+            <p class="muted text-sm mt-1">2024 — Present</p>
           </div>
         </div>
 
-        <div class="glass p-6 rounded-2xl">
-          <h4 class="text-sm font-semibold">Contact</h4>
-          <a class="mt-3 inline-block text-sm underline" href="mailto:callum.apps@icloud.com">callum.apps@icloud.com</a>
+        <div class="timeline-bullet">SW</div>
+        <div class="w-1/2"></div>
+      </div>
+
+
+      <!-- IT Support Analyst -->
+      <div class="timeline-item">
+        <div class="w-1/2"></div>
+
+        <div class="timeline-bullet">IT</div>
+
+        <div class="w-1/2 pl-10">
+          <div class="timeline-card">
+
+            <button 
+              type="button"
+              class="w-full text-left flex items-center justify-between font-semibold text-xl collapsible"
+            >
+              <span>IT Support Analyst</span>
+              <span class="text-lg arrow">▸</span>
+            </button>
+
+
+
+            <div class="content" style="display: none;">
+              <p class="muted mt-3 leading-relaxed">
+                <span class="block">• Diagnosed and resolved authentication, account, and OS issues (Windows & Linux).</span>
+                <span class="block">• Performed SSH-based server access, PowerShell scripting, and Linux CLI diagnostics.</span>
+                <span class="block">• Improved user experience through documentation and timely ticket resolution.</span>
+              </p>
+            </div>
+            <p class="muted text-sm mt-1">2023 — 2024</p>
+          </div>
         </div>
-      </aside>
+      </div>
 
-    </section>
 
-  </main>
+      <!-- Games Tester -->
+      <div class="timeline-item">
+        <div class="w-1/2 pr-10 text-right">
+          <div class="timeline-card">
 
-  <!-- Footer -->
-  <footer class="site-footer w-full">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between muted">
-      <div>© <strong>Callum Apps</strong></div>
-      <div class="mt-3 md:mt-0">Created 2023 • <a href="https://github.com/callumeppz" class="underline">GitHub</a></div>
+            <button 
+              type="button"
+              class="w-full text-left flex items-center justify-between font-semibold text-xl collapsible"
+            >
+              <span>Games Functionality Tester</span>
+              <span class="text-lg arrow">▸</span>
+            </button>
+
+            <div class="content" style="display: none;">
+              <p class="muted mt-3 leading-relaxed">
+                <span class="block">• Tested pre-release titles and executed structured test cases.</span>
+                <span class="block">• Produced detailed bug reports improving defect traceability.</span>
+                <span class="block">• Tracked issues and progress using Excel and internal QA tools.</span>
+              </p>
+            </div>
+            <p class="muted text-sm mt-1">2022 — 2023</p>
+          </div>
+        </div>
+
+        <div class="timeline-bullet">QA</div>
+        <div class="w-1/2"></div>
+      </div>
+
+
+      <!-- Computer Science Degree -->
+      <div class="timeline-item">
+        <div class="w-1/2"></div>
+
+        <div class="timeline-bullet">CS</div>
+
+        <div class="w-1/2 pl-10">
+          <div class="timeline-card">
+
+            <button 
+              type="button"
+              class="w-full text-left flex items-center justify-between font-semibold text-xl collapsible"
+            >
+              <span>Computer Science BSc (Hons)</span>
+              <span class="text-lg arrow">▸</span>
+            </button>
+
+            <div class="content" style="display: none;">
+              <p class="muted mt-3 leading-relaxed">
+                <span class="block">• Studied Algorithms, OS, Compilers, Architecture, Networking, Databases, Security, AI, and more.</span>
+                <span class="block">• Programming in Java, Python, C, and UML-based design.</span>
+                <span class="block">• Dissertation: Real-time multiplayer game using Java + C networking.</span>
+              </p>
+            </div>
+            <p class="muted text-sm mt-1">2021 — 2024</p>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- Scripts: interactions (accordion, tilt, orb, skill animations) -->
-  <script>
-    // --- Parallax orb: subtle pointer-follow for hero only ---
-    (function(){
-      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReduced) return; // keep it simple for assistive users
+<!-- SKILLS -->
+<section id="skills" class="py-24 relative fade-section">
+  <div class="section-blob-wrapper">
+    <div class="section-blob" style="top:-40px; opacity:0.55;"></div>
+  </div>
 
-      // create a small orb element in JS so markup stays clean
-      const blob = document.querySelector('.hero-blob .blob');
-      if (!blob) return;
-      let idle = true, timeoutId;
+  <div class="max-w-6xl mx-auto px-6 space-y-8 relative z-10">
+    <h2 class="text-3xl font-bold mb-4">Skills</h2>
 
-      function moveOrb(e){
-        clearTimeout(timeoutId);
-        idle = false;
-        const cx = window.innerWidth / 2;
-        const cy = window.innerHeight / 3;
-        const clientX = (e.clientX !== undefined) ? e.clientX : (e.touches && e.touches[0] && e.touches[0].clientX) || cx;
-        const clientY = (e.clientY !== undefined) ? e.clientY : (e.touches && e.touches[0] && e.touches[0].clientY) || cy;
-        const dx = (clientX - cx) / cx;
-        const dy = (clientY - cy) / cy;
-        const tx = Math.max(-40, Math.min(40, dx * 40));
-        const ty = Math.max(-24, Math.min(24, dy * 24));
-        blob.style.transform = `translate3d(${tx}px, ${ty - 24}px, 0) rotate(${tx/10}deg)`;
-        timeoutId = setTimeout(()=>{ idle = true; blob.style.transform = ''; }, 900);
+    <div>
+      <div class="font-semibold mb-1">Embedded C</div>
+      <div class="skill-track"><div class="skill-fill" style="--lv:0.95"></div></div>
+    </div>
+
+    <div>
+      <div class="font-semibold mb-1">Web Development & Full Stack</div>
+      <div class="skill-track"><div class="skill-fill" style="--lv:0.65"></div></div>
+    </div>
+
+    <div>
+      <div class="font-semibold mb-1">SysML & System Design</div>
+      <div class="skill-track"><div class="skill-fill" style="--lv:0.85"></div></div>
+    </div>
+
+    <div>
+      <div class="font-semibold mb-1">Python & Machine Learning Techniques</div>
+      <div class="skill-track"><div class="skill-fill" style="--lv:0.75"></div></div>
+    </div>
+
+  <div>
+    <div class="font-semibold mb-1">CI/CD pipelines & GIT Version Control</div>
+    <div class="skill-track"><div class="skill-fill" style="--lv:0.8"></div></div>
+  </div>
+</div>
+</section>
+
+<!-- Achievements -->
+<section id="achievements" class="py-24 relative fade-section">
+  <div class="section-blob-wrapper">
+    <div class="section-blob" style="top:-40px; opacity:0.55;"></div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-6 relative z-10">
+    <h2 class="text-3xl font-bold mb-10">Achievements</h2>
+
+    <div class="space-y-6">
+
+      <div class="bg-white/5 border border-white/10 rounded-xl p-5 backdrop-blur-md shadow-lg">
+        <p class="leading-relaxed muted">
+          Achieved First-Class Honours BSc in Computer Science, demonstrating strong academic performance.
+        </p>
+      </div>
+
+      <div class="bg-white/5 border border-white/10 rounded-xl p-5 backdrop-blur-md shadow-lg">
+        <p class="leading-relaxed muted">
+          Received exceptionally high-performance grades in all reviews at current role.
+        </p>
+      </div>
+
+      <div class="bg-white/5 border border-white/10 rounded-xl p-5 backdrop-blur-md shadow-lg">
+        <p class="leading-relaxed muted">
+          Finalist for Engineering Graduate of the Year at current company.
+        </p>
+      </div>
+
+      <div class="bg-white/5 border border-white/10 rounded-xl p-5 backdrop-blur-md shadow-lg">
+        <p class="leading-relaxed muted">
+          Awarded multiple recognition awards for significant contributions and impact in current role.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 relative fade-section">
+  <div class="section-blob-wrapper">
+    <div class="section-blob" style="top:-60px; opacity:0.5;"></div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+    <h2 class="text-3xl font-bold mb-4">Contact Me</h2>
+    <p class="muted max-w-lg mx-auto mb-6">
+      I'd love to chat.
+    </p>
+    <a class="btn-cv inline-block cursor-pointer">Email Me</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  © 2026 Callum Apps — All Rights Reserved
+</footer>
+
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Hero load-in
+  gsap.to('.hero-card', {
+    opacity: 1,
+    y: 0,
+    duration: 1.1,
+    ease: 'power3.out',
+    delay: 0.2
+  });
+
+  // Sections fade-in on scroll
+  gsap.utils.toArray('.fade-section').forEach(section => {
+    gsap.to(section, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%'
       }
+    });
+  });
 
-      window.addEventListener('pointermove', moveOrb, {passive:true});
-      window.addEventListener('touchmove', moveOrb, {passive:true});
-    })();
-
-    // --- Accordion: single-open panels ---
-    (function(){
-      const buttons = Array.from(document.querySelectorAll('.toggle-btn'));
-      function closeAll(){
-        document.querySelectorAll('.collapse.open').forEach(panel=>{
-          panel.style.maxHeight = panel.scrollHeight + 'px';
-          requestAnimationFrame(()=>{
-            panel.style.maxHeight = '0px'; panel.classList.remove('open'); panel.setAttribute('aria-hidden','true');
-          });
-        });
-        buttons.forEach(b=>b.setAttribute('aria-expanded','false'));
+  // Timeline items staggered reveal
+  gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+    gsap.to(item, {
+      opacity: 1,
+      y: 0,
+      duration: 0.9,
+      ease: 'power3.out',
+      delay: i * 0.08,
+      scrollTrigger: {
+        trigger: item,
+        start: 'top 85%'
       }
+    });
+  });
 
-      buttons.forEach(btn=>{
-        const target = document.getElementById(btn.getAttribute('data-target'));
-        if (!target) return;
-        target.style.maxHeight = '0px'; target.classList.remove('open'); target.setAttribute('aria-hidden','true');
+  var coll = document.getElementsByClassName("collapsible");
+var i;
 
-        btn.addEventListener('click', ()=>{
-          const isOpen = target.classList.contains('open');
-          if (isOpen){
-            target.style.maxHeight = target.scrollHeight + 'px';
-            requestAnimationFrame(()=>{ target.style.maxHeight = '0px'; target.classList.remove('open'); target.setAttribute('aria-hidden','true'); btn.setAttribute('aria-expanded','false'); });
-          } else {
-            closeAll();
-            target.classList.add('open'); target.setAttribute('aria-hidden','false'); btn.setAttribute('aria-expanded','true');
-            target.style.maxHeight = target.scrollHeight + 'px';
-            target.addEventListener('transitionend', function onend(){ if (target.classList.contains('open')) target.style.maxHeight = 'none'; target.removeEventListener('transitionend', onend); });
-          }
-        });
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.collapse-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const arrow = btn.querySelector('.arrow');
+
+        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+        if (isOpen) {
+          content.style.maxHeight = '0px';
+          arrow.style.transform = 'rotate(0deg)';
+        } else {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          arrow.style.transform = 'rotate(90deg)';
+        }
       });
-
-    })();
-
-    // --- Tilt effect for cards (subtle) ---
-    (function(){
-      const tiltEls = document.querySelectorAll('.timeline-card, .hero-card');
-      if (!tiltEls.length) return;
-      tiltEls.forEach(el=>{
-        let active = false;
-        el.addEventListener('mousemove', e=>{
-          const rect = el.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width;
-          const y = (e.clientY - rect.top) / rect.height;
-          const rotY = (x - 0.5) * 6; const rotX = (0.5 - y) * 6;
-          el.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-          el.style.transition = 'transform 120ms linear';
-          active = true;
-        });
-        el.addEventListener('mouseleave', ()=>{ if(!active) return; el.style.transform = ''; el.style.transition = ''; active=false; });
-      });
-    })();
-
-    // --- Skill bar animation when visible ---
-    (function(){
-      const fills = document.querySelectorAll('.skill-fill');
-      if (!fills.length) return;
-      function animate(){ fills.forEach(f=>{ const val = parseFloat(f.getAttribute('data-fill'))||0; f.style.transform = `scaleX(${val})`; f.style.transition = 'transform 900ms cubic-bezier(.2,.9,.3,1)'; }); }
-      const observer = new IntersectionObserver((entries, obs)=>{ entries.forEach(en=>{ if (en.isIntersecting){ animate(); obs.disconnect(); } }); }, {threshold:0.2});
-      observer.observe(document.querySelector('main'));
-    })();
-
-    // --- small accessibility: ensure focusable elements are keyboard reachable ---
-    (function(){ document.querySelectorAll('a,button').forEach(el=>{ if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','0'); }); })();
-  </script>
+    });
+  });
+</script>
 
 </body>
 </html>
