@@ -141,15 +141,15 @@
 </head>
 <body>
 <!-- Header -->
-<header class="site-header sticky top-0 z-50 w-full backdrop-blur-md bg-gray-900/70 shadow-lg max-w-6xl mx-auto px-6 py-4 transition-colors duration-300">
+<header id="site-header" class="site-header sticky top-0 z-50 w-full backdrop-blur-md bg-gray-900/70 shadow-lg max-w-6xl mx-auto px-6 py-4 transition-all duration-300">
   <div class="flex items-center justify-between">
     <!-- Brand -->
-    <div class="brand neon text-2xl sm:text-3xl font-extrabold tracking-wide">
+    <div class="brand neon text-2xl sm:text-3xl font-extrabold tracking-wide transition-all duration-300">
       Callum Apps
     </div>
 
     <!-- Navigation -->
-    <nav class="nav-links flex gap-6 text-sm sm:text-base md:text-base lg:text-base" aria-label="Main navigation">
+    <nav class="nav-links flex gap-6 text-sm sm:text-base md:text-base lg:text-base transition-all duration-300" aria-label="Main navigation">
       <a href="index.html" class="hover:text-purple-400 transition-colors duration-200">Home</a>
       <a href="projects.html" class="hover:text-purple-400 transition-colors duration-200">Projects</a>
       <a href="about.html" class="hover:text-purple-400 transition-colors duration-200">About</a>
@@ -158,6 +158,40 @@
     </nav>
   </div>
 </header>
+
+<script>
+  // Shrink header on scroll
+  const header = document.getElementById('site-header');
+  const brand = header.querySelector('.brand');
+  const navLinks = header.querySelector('.nav-links');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) { // smaller threshold for phones
+      header.classList.add('py-2', 'shadow-xl', 'bg-gray-900/90');
+      header.classList.remove('py-4');
+
+      // shrink brand text slightly
+      brand.classList.add('text-xl');
+      brand.classList.remove('text-2xl', 'sm:text-3xl');
+
+      // shrink nav text slightly
+      navLinks.classList.add('text-xs', 'sm:text-sm');
+      navLinks.classList.remove('text-sm', 'sm:text-base');
+    } else {
+      header.classList.remove('py-2', 'shadow-xl', 'bg-gray-900/90');
+      header.classList.add('py-4');
+
+      // restore brand text
+      brand.classList.remove('text-xl');
+      brand.classList.add('text-2xl', 'sm:text-3xl');
+
+      // restore nav text
+      navLinks.classList.remove('text-xs', 'sm:text-sm');
+      navLinks.classList.add('text-sm', 'sm:text-base');
+    }
+  });
+</script>
+
 
 
 
