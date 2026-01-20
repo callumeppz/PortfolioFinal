@@ -609,3 +609,72 @@ textarea {
   overflow: hidden;
   background-color: #f1f1f1;
 }
+
+@media (max-width: 768px) {
+
+  /* Move the timeline line to the left */
+  .timeline-line {
+    left: 24px !important;
+    transform: none !important;
+  }
+
+  /* Stack items vertically */
+  .timeline-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+  }
+
+  /* Make both sides full width */
+  .timeline-item > .w-1\/2 {
+    width: 100% !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+
+  /* Bullet aligns to the left */
+  .timeline-bullet {
+    margin-left: 0.25rem;
+  }
+
+  /* Card spacing */
+  .timeline-card {
+    margin-left: 2.5rem; /* aligns with bullet */
+  }
+
+  /* Title font size slightly smaller */
+  .timeline-card button {
+    font-size: 1.1rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Reduce header padding */
+  header.site-header .mx-auto {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  /* Shrink name text */
+  header.site-header .font-extrabold {
+    font-size: 1rem !important;
+  }
+
+  /* Make nav smaller + tighter */
+  header.site-header .nav-links {
+    gap: 0.5rem !important;
+    font-size: 0.75rem !important;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 60%;
+  }
+
+  header.site-header .nav-links a {
+    padding: 0.35rem 0.55rem !important;
+    border-radius: 6px !important;
+  }
+}
+
