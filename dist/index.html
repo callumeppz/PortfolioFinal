@@ -16,6 +16,8 @@
       --muted:rgba(255,255,255,0.65);
       --accent1:#8b5cf6;
       --accent2:#06b6d4;
+      --accent3:#644bd2c4;
+      --accent4:#a706d4;
       --glass:rgba(255,255,255,0.04);
       --card:rgba(255,255,255,0.06);
     }
@@ -139,7 +141,7 @@
     .btn-cv {
       padding:.7rem 1.3rem;
       border-radius:1rem;
-      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      background:linear-gradient(90deg,var(--accent3),var(--accent4));
       color:white;
       font-weight:700;
       box-shadow:0 10px 30px rgba(0,0,0,0.5);
@@ -303,6 +305,20 @@
 
 }
 
+.btn-cv {
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(6px);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.btn-cv:hover {
+  border-color: rgba(139,92,246,0.6);
+  box-shadow: 0 0 12px rgba(139,92,246,0.4);
+}
+
   </style>
 </head>
 
@@ -326,7 +342,6 @@
         <a href="#timeline">Timeline</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
-        <a href="https://github.com/callumeppz" target="_blank" rel="noopener noreferrer">GitHub</a>
       </nav>
     </div>
   </header>
@@ -362,8 +377,18 @@
       <div class="chip">Web-Development</div>
     </div>
 
-    <a class="btn-cv inline-block cursor-pointer" href="Callum-Apps-CV.pdf" download="Callum-Apps-CV">Download CV</a>
-
+    <a class="btn-cv inline-flex items-center gap-2 cursor-pointer"
+    href="Callum-Apps-CV.pdf"
+    download="Callum-Apps-CV">
+ 
+   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+     <path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/>
+   </svg>
+ 
+   Download CV
+ </a>
+ 
+ 
   </div>
 </section>
 
@@ -618,6 +643,8 @@
 
 <footer>
   2023 Callum Apps
+  <a style="text-align: right" href="https://github.com/callumeppz" target="_blank" rel="noopener noreferrer"><u>GitHub</u></a>
+  <a style="text-align: right" href="https://www.linkedin.com/in/callum-apps/" target="_blank" rel="noopener noreferrer"><u>LinkedIn</u></a>
 </footer>
 
 <!-- GSAP + ScrollTrigger -->
