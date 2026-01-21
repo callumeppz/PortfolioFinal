@@ -25,12 +25,7 @@
       width: 100%;
     }
 
-    
-    section, div {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
+  
 
 
     body {
@@ -282,6 +277,30 @@
     visibility: hidden !important;
     opacity: 0 !important;
   }
+
+  .timeline-bullet-small {
+    display: block;
+    width:60px;
+      height:60px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      box-shadow:0 10px 26px rgba(0,0,0,0.45);
+      color:white;
+      flex-shrink:0;
+  }
+}
+
+@media (min-width: 768px) {
+  .timeline-bullet-small {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+
 }
 
   </style>
@@ -363,7 +382,7 @@
 
       <!-- Graduate Software Engineer -->
       <div class="timeline-item flex flex-col md:flex-row md:items-start md:gap-6">
-
+        <div class="timeline-bullet-small hidden md:flex mx-auto md:mx-0">SW</div>
         <!-- LEFT SIDE -->
         <div class="w-full md:w-1/2 md:pr-10 md:text-right">
           <div class="timeline-card">
@@ -401,7 +420,7 @@
 
       <!-- IT Support Analyst -->
       <div class="timeline-item flex flex-col md:flex-row md:items-start md:gap-6">
-
+        <div class="timeline-bullet-small hidden md:flex mx-auto md:mx-0">IT</div>
         <div class="hidden md:block w-1/2"></div>
 
         <!-- FIXED BULLET -->
@@ -434,7 +453,7 @@
 
       <!-- Games Tester -->
       <div class="timeline-item flex flex-col md:flex-row md:items-start md:gap-6">
-
+        <div class="timeline-bullet-small hidden md:flex mx-auto md:mx-0">QA</div>
         <div class="w-full md:w-1/2 md:pr-10 md:text-right">
           <div class="timeline-card">
 
@@ -467,7 +486,7 @@
 
       <!-- Computer Science Degree -->
       <div class="timeline-item flex flex-col md:flex-row md:items-start md:gap-6">
-
+        <div class="timeline-bullet-small hidden md:flex mx-auto md:mx-0">CS</div>
         <div class="hidden md:block w-1/2"></div>
 
         <!-- FIXED BULLET -->
